@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" name="XMLConfigTest" packages="org.apache.logging.log4j.test">
+  <Properties>
+    <Property name="filename">target/test.log</Property>
+  </Properties>
+  
+  <!-- 优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、 ALL -->
+  <!--Appenders下的节点用来配置日志输出的方式和格式，通过name给下面的logger引用，子节点不是随便命名的 -->
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout pattern="%m MDC%X%n"/>
+    </Console>
+    <Console name="FLOW">
+      <!-- this pattern outputs class name and line number -->
+      <PatternLayout pattern="%C{1}.%M %m %ex%n"/>
+    </Console>
+    <File name="File" fileName="${filename}">
+      <PatternLayout>
+        <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+      </PatternLayout>
+    </File>
+    <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+	<RollingFile name="RollingFile" fileName="logs/app.log"
+		filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+		<!-- <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" /> -->
+		<PatternLayout>
+			<pattern>%d{yyyy-MM-dd hh:mm:ss,SSS} %5p %t %c:%L - %m%n</pattern>
+		</PatternLayout>
+		<SizeBasedTriggeringPolicy size="3MB" />
+	</RollingFile>
+    
+  </Appenders>
+ 
+  <!-- Loggers下的节点用来输入日志，输出日志的类是name属性的包下的类 -->
+  <!-- logger节点为自定义的输出那些类和级别的 -->
+  <Loggers>
+    <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
+      <AppenderRef ref="STDOUT"/>
+    </Logger>
+ 
+    <Logger name="org.apache.logging.log4j.test2" level="debug" additivity="false">
+      <Property name="user">${sys:user.name}</Property>
+      <AppenderRef ref="STDOUT" level="error"/>
+    </Logger>
+ 
+ 	<!-- Root节点对所有的类都生效 -->
+    <Root level="trace">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+ 
+</Configuration>

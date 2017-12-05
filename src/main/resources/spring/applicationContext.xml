@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.chnjn.persblog.service.impl"></context:component-scan>
+    
+    <context:property-placeholder location="classpath:properties/jdbc.properties"/>
+
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<!-- 配置mybatis -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:com/chnjn/persblog/dao/mappers/*.xml"/>
+	</bean>
+	
+	<!-- 配置针对每个dao接口的代理bean -->
+	<!-- <bean id="blogMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.chnjn.persblog.dao.BlogDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
+	</bean> -->
+	
+	<!-- 配置扫描的dao接口代理bean针对包 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+            <!-- 这里的basePackage 指定了dao层接口路劲，这里的dao接口不用自己实现 -->  
+            <property name="basePackage" value="com.chnjn.persblog.dao" />  
+            <!-- 如果只有一个数据源的话可以不用指定，但是如果有多个数据源的话必须要指定 -->  
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" /> 
+            <!--直接指定了sqlsessionTemplate名称，这个和上面的其实是一样的 -->  
+            <!-- <property name="sqlSessionTemplateBeanName" value="sqlSession" /> -->  
+    </bean>
+    
+    <!-- 数据源2 -->
+	<bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.user.driver}"/>
+		<property name="url" value="${jdbc.user.url}"/>
+		<property name="username" value="${jdbc.user.username}"/>
+		<property name="password" value="${jdbc.user.password}"/>
+	</bean>
+	
+	<!-- 配置mybatis2 -->
+	<bean id="sqlSessionFactoryBean2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource2"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:com/chnjn/persblog/user/dao/mappers/*.xml"/>
+	</bean>
+	
+	<!-- 配置扫描的dao接口代理bean针对包 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+            <!-- 这里的basePackage 指定了dao层接口路劲，这里的dao接口不用自己实现 -->  
+            <property name="basePackage" value="com.chnjn.persblog.user.dao" />
+            <!-- 如果只有一个数据源的话可以不用指定，但是如果有多个数据源的话必须要指定 -->  
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean2" /> 
+    </bean>
+	
+</beans>
