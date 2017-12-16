@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chnjan.ccblog.main.dao.BlogDao">
+	<resultMap type="com.chnjan.ccblog.main.domain.Blog" id="rmBlog">
+		<id column="blogid" property="blogId"/>
+		<result column="title" property="title"/>
+		<result column="createtime" property="createTime"/>
+		<result column="lastupdatetime" property="lastUpdateTime"/>
+		<result column="content" property="content"/>
+		<result column="autorid" property="autorid"/>
+	</resultMap>
+	
+	<insert parameterType="com.chnjan.ccblog.main.domain.Blog" id="addBlog">
+		insert into t_main_blog (blogid,
+						    	title,
+						    	createtime,
+						    	lastupdatetime,
+						    	content,
+						    	autorid)
+						values (#{blogId},
+								#{title},
+						    	sysdate(),
+						    	#{lastUpdateTime},
+						    	#{content},
+						    	#{autorid})
+	</insert>
+	<select id="queryBlogById" parameterType="String" resultType="com.chnjan.ccblog.main.domain.Blog">
+	 	select * from t_blog where id = #{blogId}
+	</select>
+	<delete id="deleteBlogById" parameterType="String">
+		delete t_blog where id = #{blogId}
+	</delete>
+	<update id="updateBlog" parameterType="com.chnjan.ccblog.main.domain.Blog">
+		update t_blog set
+			title = #{title},
+		    content = #{content},
+		    updateData = sysdate(),
+		    isDelete = #{isDelete},
+		    canReply = #{canReply},
+		    readCount = #{readCount}
+		where id = #{id}
+	</update>
+	
+</mapper>
