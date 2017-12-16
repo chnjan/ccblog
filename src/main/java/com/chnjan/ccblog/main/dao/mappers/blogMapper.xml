@@ -27,20 +27,18 @@
 						    	#{autorid})
 	</insert>
 	<select id="queryBlogById" parameterType="String" resultType="com.chnjan.ccblog.main.domain.Blog">
-	 	select * from t_blog where id = #{blogId}
+	 	select * from t_main_blog where blogId = #{blogId}
 	</select>
 	<delete id="deleteBlogById" parameterType="String">
-		delete t_blog where id = #{blogId}
+		delete from t_main_blog where blogid = #{blogId}
 	</delete>
 	<update id="updateBlog" parameterType="com.chnjan.ccblog.main.domain.Blog">
-		update t_blog set
+		update t_main_blog set
 			title = #{title},
 		    content = #{content},
-		    updateData = sysdate(),
-		    isDelete = #{isDelete},
-		    canReply = #{canReply},
-		    readCount = #{readCount}
-		where id = #{id}
+		    lastupdatetime = sysdate(),
+		    autorid = #{autorid}   
+		where blogId = #{blogId}
 	</update>
 	
 </mapper>

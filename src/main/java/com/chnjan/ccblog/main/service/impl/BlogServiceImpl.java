@@ -19,8 +19,8 @@ public class BlogServiceImpl implements BlogService {
 	private BlogDao blogDao;
 	
 	public Blog queryBlogById(String blogId) {
-		
-		return null;
+		Blog blog = blogDao.queryBlogById(blogId);
+		return blog;
 	}
 
 	public void addBlog(Blog blog) {
@@ -29,13 +29,13 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	public int deleteBlogById(String blogId) {
-		
-		return 0;
+		int count = blogDao.deleteBlogById(blogId);
+		return count;
 	}
 
 	public int updateBlog(Blog blog) {
-		
-		return 0;
+		int count = blogDao.updateBlog(blog);
+		return count;
 	}
 
 	

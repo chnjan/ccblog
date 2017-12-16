@@ -1,14 +1,8 @@
-/**
- * 
- */
 package com.chnjan.ccblog.common.tools;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,23 +48,16 @@ public class IdGenerate {
 		String randomCode = "";
 		StringBuilder sb = new StringBuilder("");
 		
-		try {
-			//使用SHA1PRNG随机数生成算法
-			Random random = SecureRandom.getInstance("SHA1PRNG");
-			//设置随机对象种子
-			random.setSeed(System.currentTimeMillis()+521L);
-			
-			//随机字符的范围
-			String numRange = "1235689074";
-	
-			//拼接指定长度的字符
-			for (int i = 0; i < count; i++) {
-				int charIndex = random.nextInt(10);
-				sb.append(numRange.charAt(charIndex));
-			}
-			
-		} catch (NoSuchAlgorithmException e) {
-			LOGGER.error("生成随机数异常："+e);
+		//获取随机对象单例
+		SecureRandom random = SingletonRandom.getInstance();
+		LOGGER.debug("随机算法："+random.getAlgorithm());
+		//随机字符的范围
+		String numRange = "1235689074";
+
+		//拼接指定长度的字符
+		for (int i = 0; i < count; i++) {
+			int charIndex = random.nextInt(10);
+			sb.append(numRange.charAt(charIndex));
 		}
 		
 		randomCode = sb.toString();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="debug" name="XMLConfigTest" packages="org.apache.logging.log4j.test">
+<Configuration>
   <Properties>
     <Property name="filename">target/test.log</Property>
   </Properties>
@@ -24,7 +24,7 @@
 		filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 		<!-- <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" /> -->
 		<PatternLayout>
-			<pattern>%d{yyyy-MM-dd hh:mm:ss,SSS} %5p %t %c:%L - %m%n</pattern>
+			<pattern>%d{yyyy-MM-dd hh:mm:ss,SSS} %5p %t %c %M:%L - %m%n</pattern>
 		</PatternLayout>
 		<SizeBasedTriggeringPolicy size="3MB" />
 	</RollingFile>
@@ -34,17 +34,21 @@
   <!-- Loggers下的节点用来输入日志，输出日志的类是name属性的包下的类 -->
   <!-- logger节点为自定义的输出那些类和级别的 -->
   <Loggers>
-    <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
+    <!-- <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
       <AppenderRef ref="STDOUT"/>
     </Logger>
  
     <Logger name="org.apache.logging.log4j.test2" level="debug" additivity="false">
       <Property name="user">${sys:user.name}</Property>
       <AppenderRef ref="STDOUT" level="error"/>
+    </Logger> -->
+    
+    <Logger name="com.chnjan.ccblog" level="debug" additivity="false">
+      <AppenderRef ref="RollingFile"/>
     </Logger>
  
  	<!-- Root节点对所有的类都生效 -->
-    <Root level="trace">
+    <Root level="error">
       <AppenderRef ref="STDOUT"/>
     </Root>
   </Loggers>

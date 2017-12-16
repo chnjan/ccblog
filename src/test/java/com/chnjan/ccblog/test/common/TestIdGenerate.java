@@ -25,7 +25,7 @@ public class TestIdGenerate {
 	
 	@Test
 	public void testGetRandomNum() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			String result = IdGenerate.getRandomCode(10);
 			System.out.println(result);
 		}
