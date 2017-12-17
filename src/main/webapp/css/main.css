@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.test{width: 200px;height: 300px;background-color: red}
+
+#main_left_div {
+	left: 10px; top: 142px; width: 160px; padding-top: 0px; margin-top: 0px; position: absolute; background-color: rgb(238, 238, 255);
+}
+#main_right_div {
+	top: 174px; width: 300px; right: 7px; position: absolute; background-color: rgb(238, 238, 255);
+}
+#blog_list_div {
+	padding-top: 10px; padding-right: 0px; padding-left: 5px; margin-top: 0px; min-height: 300px;
+}

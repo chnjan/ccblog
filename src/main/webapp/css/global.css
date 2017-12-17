@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px; padding: 0px; font-family: "PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif; font-size: 12px;
+	background: rgb(255, 255, 255); color: rgb(0, 0, 0);
+}
+a {
+	outline: 0px;
+}
+a:link {
+	color: rgb(1, 95, 182);
+}
+a:visited {
+	color: rgb(1, 95, 182);
+}
+a:active {
+	color: rgb(1, 95, 182);
+}
+a:hover {
+	color: rgb(227, 62, 6);
+}

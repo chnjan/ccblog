@@ -2,6 +2,7 @@
 <Configuration>
   <Properties>
     <Property name="filename">target/test.log</Property>
+    <Property name="rollingfilename">target/app.log</Property>
   </Properties>
   
   <!-- 优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、 ALL -->
@@ -20,8 +21,8 @@
       </PatternLayout>
     </File>
     <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
-	<RollingFile name="RollingFile" fileName="logs/app.log"
-		filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+	<RollingFile name="RollingFile" fileName="${rollingfilename}"
+		filePattern="target/log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 		<!-- <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" /> -->
 		<PatternLayout>
 			<pattern>%d{yyyy-MM-dd hh:mm:ss,SSS} %5p %t %c %M:%L - %m%n</pattern>
