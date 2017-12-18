@@ -14,6 +14,6 @@ public class MainPageController {
 	
 	@RequestMapping("/")
 	public String mainPage() {
-		return "main/NewFile";
+		return "main/index/index";
 	}
 }
