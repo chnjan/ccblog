@@ -3,8 +3,6 @@ html {
 }
 body {
 	background: rgb(255, 255, 255); color: rgb(0, 0, 0);
-}
-body {
 	margin: 0px; padding: 0px;
 }
 div {
@@ -896,7 +894,7 @@ a.titlelnk:hover {
 	height: auto; overflow: hidden; display: block;
 }
 #side_nav {
-	left: 10px; top: 142px; width: 160px; padding-top: 0px; margin-top: 0px; position: absolute; background-color: rgb(238, 238, 255);
+	left: 10px; top: 142px; width: 160px; padding-top: 0px; margin-top: 0px; position: absolute; background-color: rgb(238, 254, 254);
 }
 #cate_block {
 	
@@ -1085,7 +1083,7 @@ h2 {
 	margin-top: 10px;
 }
 #side_right {
-	top: 174px; width: 300px; right: 7px; position: absolute; background-color: rgb(238, 238, 255);
+	top: 174px; width: 300px; right: 7px; position: absolute; background-color: rgb(238, 254, 254);
 }
 #link_zone {
 	padding: 3px 5px; border: 1px solid rgb(202, 224, 245); line-height: 1.8em;
@@ -1316,7 +1314,7 @@ h4 .more a:visited {
 	width: 60px; float: left;
 }
 .diggit {
-	background: url("//common.cnblogs.com/images/upup.gif") no-repeat; width: 46px; height: 52px; text-align: center; text-indent: 0px; margin-top: 2px; float: left; cursor: pointer;
+	background: url("../image/main/upup.gif") no-repeat; width: 46px; height: 52px; text-align: center; text-indent: 0px; margin-top: 2px; float: left; cursor: pointer;
 }
 .diggnum {
 	color: rgb(7, 93, 179); line-height: 2.2em; font-family: Verdana; font-size: 14px;

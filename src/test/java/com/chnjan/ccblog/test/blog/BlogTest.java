@@ -2,6 +2,7 @@
 package com.chnjan.ccblog.test.blog;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -63,5 +64,14 @@ public class BlogTest {
 	public void testQueryById() {
 		Blog blog = blogService.queryBlogById("20171217010652583474450");
 		System.out.println(blog);
+	}
+	
+	//查询列表
+	@Test
+	public void testQueryBlogList() {
+		List<Blog> result = blogService.queryBlogList();
+		for (int i = 0; i < result.size(); i++) {
+			System.out.println(result.get(i));
+		}
 	}
 }

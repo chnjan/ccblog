@@ -1,5 +1,7 @@
 package com.chnjan.ccblog.main.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,9 @@ public class BlogServiceImpl implements BlogService {
 		return count;
 	}
 
+	public List<Blog> queryBlogList() {
+		return blogDao.queryBlogList();
+	}
 	
 	//get and set method
 	public BlogDao getBlogDao() {

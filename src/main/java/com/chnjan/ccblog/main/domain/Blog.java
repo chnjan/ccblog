@@ -23,6 +23,12 @@ public class Blog {
 	private String content;
 	//作者id
 	private String autorid;
+	//作者名称
+	private String autorName;
+	//阅读量
+	private Integer readCount;
+	//推荐量
+	private Integer upupCount;
 	
 	
 	public String getBlogId() {
@@ -61,11 +67,30 @@ public class Blog {
 	public void setAutorid(String autorid) {
 		this.autorid = autorid;
 	}
+	public String getAutorName() {
+		return autorName;
+	}
+	public void setAutorName(String autorName) {
+		this.autorName = autorName;
+	}
+	public Integer getReadCount() {
+		return readCount;
+	}
+	public void setReadCount(Integer readCount) {
+		this.readCount = readCount;
+	}
+	public Integer getUpupCount() {
+		return upupCount;
+	}
+	public void setUpupCount(Integer upupCount) {
+		this.upupCount = upupCount;
+	}
 	
 	@Override
 	public String toString() {
 		return "Blog [blogId=" + blogId + ", createTime=" + createTime + ", lastUpdateTime=" + lastUpdateTime
-				+ ", title=" + title + ", content=" + content + ", autorid=" + autorid + "]";
+				+ ", title=" + title + ", content=" + content + ", autorid=" + autorid + ", autorName=" + autorName
+				+ ", readCount=" + readCount + ", upupCount=" + upupCount + "]";
 	}
-
+	
 }

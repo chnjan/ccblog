@@ -10,6 +10,9 @@
 		<result column="lastupdatetime" property="lastUpdateTime"/>
 		<result column="content" property="content"/>
 		<result column="autorid" property="autorid"/>
+		<result column="autorid" property="autorName"/>
+		<result column="readcount" property="readCount"/>
+		<result column="upupcount" property="upupCount"/>
 	</resultMap>
 	
 	<insert parameterType="com.chnjan.ccblog.main.domain.Blog" id="addBlog">
@@ -40,5 +43,15 @@
 		    autorid = #{autorid}   
 		where blogId = #{blogId}
 	</update>
+	
+	<!-- 首页展示博客列表查询 -->
+	<select id="queryBlogList" resultType="com.chnjan.ccblog.main.domain.Blog">
+	 	SELECT t.blogid,t.createtime,t.lastupdatetime,t.title,
+			t.content,t.autorid,t.autorid autorname,t.readcount,t.upupcount
+		FROM
+			t_main_blog AS t
+		ORDER BY
+			t.createtime DESC
+	</select>
 	
 </mapper>

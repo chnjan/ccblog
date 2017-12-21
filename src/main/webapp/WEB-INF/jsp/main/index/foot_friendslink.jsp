@@ -6,8 +6,7 @@
 		<p class="r_b_2"></p>
 		<p class="r_b_1"></p>
 		<div id="friend_link">
-			友情链接：<a href="http://click.aliyun.com/m/994/" target="_blank">
-						<img alt="阿里云" src="//common.cnblogs.com/images/friend_link/aliyun.png"></a>
+			友情链接：<a href="http://click.aliyun.com/m/994/" target="_blank">阿里云</a>
 					<a href="https://cloud.tencent.com/?fromSource=gwzcw.541531.541531.541531" target="_blank">腾讯云</a>
 					<a href="http://www.hujiang.com" target="_blank">沪江网</a>
 					<a href="http://www.chinaz.com/" target="_blank">站长之家</a>

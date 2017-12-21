@@ -1,5 +1,7 @@
 package com.chnjan.ccblog.main.dao;
 
+import java.util.List;
+
 import com.chnjan.ccblog.main.domain.Blog;
 
 
@@ -33,5 +35,10 @@ public interface BlogDao {
 	 * 
 	 * */
 	int updateBlog(Blog blog);
+	
+	/**
+	 * 首页查询博客列表
+	 * */
+	List<Blog> queryBlogList();
 
 }

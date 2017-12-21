@@ -1,5 +1,7 @@
 package com.chnjan.ccblog.main.service;
 
+import java.util.List;
+
 import com.chnjan.ccblog.main.domain.Blog;
 
 
@@ -34,4 +36,8 @@ public interface BlogService {
 	 * */
 	int updateBlog(Blog blog);
 	
+	/**
+	 * 首页查询博客列表
+	 * */
+	List<Blog> queryBlogList();
 }
