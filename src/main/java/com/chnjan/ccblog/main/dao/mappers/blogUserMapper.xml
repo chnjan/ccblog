@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chnjan.ccblog.main.dao.BlogDao">
+<mapper namespace="com.chnjan.ccblog.main.dao.BlogUserDao">
 	<resultMap type="com.chnjan.ccblog.main.domain.Blog" id="rmBlog">
 		<id column="blogid" property="blogId"/>
 		<result column="title" property="title"/>
@@ -15,7 +15,7 @@
 		<result column="upupcount" property="upupCount"/>
 	</resultMap>
 	
-	<insert parameterType="com.chnjan.ccblog.main.domain.Blog" id="addBlog">
+	<insert parameterType="com.chnjan.ccblog.main.domain.BlogUser" id="addUser">
 		insert into t_main_blog (blogid,
 						    	title,
 						    	createtime,
@@ -29,13 +29,13 @@
 						    	#{content},
 						    	#{autorid})
 	</insert>
-	<select id="queryBlogById" parameterType="String" resultType="com.chnjan.ccblog.main.domain.Blog">
+	<select id="queryUserById" parameterType="String" resultType="com.chnjan.ccblog.main.domain.BlogUser">
 	 	select * from t_main_blog where blogId = #{blogId}
 	</select>
-	<delete id="deleteBlogById" parameterType="String">
+	<delete id="deleteUserById" parameterType="String">
 		delete from t_main_blog where blogid = #{blogId}
 	</delete>
-	<update id="updateBlog" parameterType="com.chnjan.ccblog.main.domain.Blog">
+	<update id="updateUser" parameterType="com.chnjan.ccblog.main.domain.BlogUser">
 		update t_main_blog set
 			title = #{title},
 		    content = #{content},
@@ -54,16 +54,14 @@
 			t.createtime DESC
 	</select>
 	
-	<select id="queryBlogListByUid" resultType="com.chnjan.ccblog.main.domain.Blog" parameterType="String">
-		SELECT t.blogid,t.createtime,t.lastupdatetime,t.title,
-			t.content,t.autorid,u.nickname autorname,t.readcount,t.upupcount
+	<!-- 通过url查询用户id -->
+	<select id="queryUserIdByUrl" parameterType="String" resultType="String">
+	 	SELECT t.userid
 		FROM
-			t_main_blog AS t,
-			t_main_userinfo As u
-		where t.autorid = u.userid
-		and u.userid = #{uid}
-		ORDER BY
-			t.createtime DESC
+			t_main_userurl AS t
+		where 
+			t.url = #{url}
 	</select>
+	
 	
 </mapper>

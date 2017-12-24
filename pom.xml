@@ -10,6 +10,8 @@
   
   <!-- 版本 -->
   <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	
   	<spring-version>4.3.9.RELEASE</spring-version>
   	<junit-version>4.12</junit-version>
   	<servlet-version>3.1.0</servlet-version>
@@ -149,5 +151,17 @@
 			</configuration>
 		</plugin>
     </plugins>
+    <resources>  
+	    <resource>  
+	        <directory>src/main/resources</directory>  
+	    </resource>  
+	    <resource>  
+	        <directory>src/main/java</directory>  
+	        <includes>  
+	            <include>**/*.xml</include>  
+	        </includes>  
+	        <filtering>true</filtering>  
+	    </resource>  
+	</resources>
   </build>
 </project>

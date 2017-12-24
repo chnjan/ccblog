@@ -40,4 +40,11 @@ public interface BlogService {
 	 * 首页查询博客列表
 	 * */
 	List<Blog> queryBlogList();
+	
+	/**
+	 * 查询某个用户的所有blog列表
+	 * @param uid 用户id
+	 * @return List<blog>某个用户的blog列表
+	 * */
+	List<Blog> queryBlogListByUid(String uid);
 }

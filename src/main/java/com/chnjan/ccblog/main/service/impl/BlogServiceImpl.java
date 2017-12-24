@@ -44,13 +44,14 @@ public class BlogServiceImpl implements BlogService {
 		return blogDao.queryBlogList();
 	}
 	
-	//get and set method
-	public BlogDao getBlogDao() {
-		return blogDao;
-	}
-
-	public void setBlogDao(BlogDao blogDao) {
-		this.blogDao = blogDao;
+	/**
+	 * 查询某个用户的所有blog列表
+	 * @param uid 用户id
+	 * @return List<blog>某个用户的blog列表
+	 * */
+	public List<Blog> queryBlogListByUid(String uid) {
+		
+		return blogDao.queryBlogListByUid(uid);
 	}
 
 }
