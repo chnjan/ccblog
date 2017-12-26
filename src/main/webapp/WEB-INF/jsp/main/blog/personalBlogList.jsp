@@ -27,9 +27,9 @@
 				<a id="homepage1_HomePageDays_DaysList_ctl00_ImageLink" href="http://www.cnblogs.com/skyfsm/archive/2017/12/23.html">2017年12月23日</a>				  
 			</div>
 			<div class="postTitle">
-				<a class="postTitle2" id="homepage1_HomePageDays_DaysList_ctl00_DayList_TitleUrl_0" href="<%=bathPath %>/blog/${userUrl}/${myblog.blogId}.html">${myblog.title }</a>
+				<a class="postTitle2" id="homepage1_HomePageDays_DaysList_ctl00_DayList_TitleUrl_0" href="<%=bathPath %>/blog/${userBlogInfo.userUrl}/${myblog.blogId}.html">${myblog.title }</a>
 			</div>
-			<div class="postCon"><div class="c_b_p_desc">摘要: ${myblog.content}<a class="c_b_p_desc_readmore" href="<%=bathPath %>/blog/${userUrl}/${myblog.blogId}.html">阅读全文</a></div></div>
+			<div class="postCon"><div class="c_b_p_desc">摘要: ${myblog.blogAbstract}<a class="c_b_p_desc_readmore" href="<%=bathPath %>/blog/${userBlogInfo.userUrl}/${myblog.blogId}.html">阅读全文</a></div></div>
 			<div class="clear"></div>
 			<div class="postDesc">posted @ ${myblog.createTime}  ${myblog.autorName} 阅读(${myblog.readCount}) 评论(${myblog.upupCount})  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=8088158" rel="nofollow">编辑</a></div>
 			<div class="clear"></div>

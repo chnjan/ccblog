@@ -8,11 +8,11 @@
 			<h3 class="catListTitle">公告</h3>
 			<div id="blog-news">
 				<div id="profile_block">昵称：
-					<a href="http://home.cnblogs.com/u/skyfsm/">Madcola</a><br>
-					园龄：<a title="入园时间：2017-01-09" href="http://home.cnblogs.com/u/skyfsm/">11个月</a><br>
-					粉丝：<a href="http://home.cnblogs.com/u/skyfsm/followers/">144</a><br>
+					<a href="http://home.cnblogs.com/u/skyfsm/">${userBlogInfo.nickName}</a><br>
+					博龄：<a title="入坑时间：2017-01-09" href="http://home.cnblogs.com/u/skyfsm/">11个月</a><br>
+					<!-- 粉丝：<a href="http://home.cnblogs.com/u/skyfsm/followers/">144</a><br>
 					关注：<a href="http://home.cnblogs.com/u/skyfsm/followees/">20</a>
-					<div id="p_b_follow"><a onclick="follow('0615e00a-49d6-e611-845c-ac853d9f53ac')" href="javascript:void(0);">+加关注</a></div>
+					<div id="p_b_follow"><a onclick="follow('0615e00a-49d6-e611-845c-ac853d9f53ac')" href="javascript:void(0);">+加关注</a></div> -->
 				</div>
 			</div>
 			<!-- <script type="text/javascript">loadBlogNews();</script> -->

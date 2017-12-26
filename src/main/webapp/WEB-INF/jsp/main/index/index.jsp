@@ -58,7 +58,7 @@
 				<a href="http://www.cnblogs.com/wxshi/" target="_blank">
 					<img width="48" height="48" class="pfs" alt="" src="//pic.cnblogs.com/face/702365/20171201112556.png">
 				</a>
-				${blog.content } ...
+				${blog.blogAbstract }
 			    </p>
 			    <div class="post_item_foot">                    
 				    <a class="lightblue" href="http://www.cnblogs.com/wxshi/">${blog.autorName }</a> 

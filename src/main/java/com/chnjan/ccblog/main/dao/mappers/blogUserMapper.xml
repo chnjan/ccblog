@@ -3,16 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chnjan.ccblog.main.dao.BlogUserDao">
-	<resultMap type="com.chnjan.ccblog.main.domain.Blog" id="rmBlog">
-		<id column="blogid" property="blogId"/>
-		<result column="title" property="title"/>
-		<result column="createtime" property="createTime"/>
-		<result column="lastupdatetime" property="lastUpdateTime"/>
-		<result column="content" property="content"/>
-		<result column="autorid" property="autorid"/>
-		<result column="autorid" property="autorName"/>
-		<result column="readcount" property="readCount"/>
-		<result column="upupcount" property="upupCount"/>
+	<resultMap type="com.chnjan.ccblog.main.domain.UserBlogInfo" id="rmBlogUser">
+		<id column="userid" property="userId"/>
+		<result column="nickname" property="nickName"/>
+		<result column="saysome" property="saySome"/>
+		<result column="url" property="userUrl"/>
+		<result column="blogcount" property="blogCount"/>
+		<result column="commentcount" property="commentCount"/>
 	</resultMap>
 	
 	<insert parameterType="com.chnjan.ccblog.main.domain.BlogUser" id="addUser">
@@ -55,12 +52,11 @@
 	</select>
 	
 	<!-- 通过url查询用户id -->
-	<select id="queryUserIdByUrl" parameterType="String" resultType="String">
-	 	SELECT t.userid
-		FROM
-			t_main_userurl AS t
-		where 
-			t.url = #{url}
+	<select id="queryUserIdByUrl" parameterType="String" resultMap="rmBlogUser">
+	 	SELECT t1.userid,t2.nickname,t1.saysome,t1.url,t1.blogcount,t1.commentcount
+			FROM t_main_userurl t1,t_main_userinfo t2
+		WHERE 	t1.userid = t2.userid
+			AND t1.url=#{url}
 	</select>
 	
 	

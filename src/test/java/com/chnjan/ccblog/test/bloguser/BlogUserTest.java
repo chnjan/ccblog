@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.chnjan.ccblog.main.domain.UserBlogInfo;
 import com.chnjan.ccblog.main.service.BlogUserService;
 
 /**
@@ -24,8 +25,8 @@ public class BlogUserTest {
 	@Test
 	public void testQueryUidByUrl() {
 		String urlstring = "chnjan";
-		String uid = blogUserservice.queryUserIdByUrl(urlstring);
-		System.out.println(uid);
+		UserBlogInfo userBlogInfo = blogUserservice.queryUserIdByUrl(urlstring);
+		System.out.println(userBlogInfo);
 		//assertThat(url,equalTo("master"));
 		
 	}
