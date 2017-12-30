@@ -15,7 +15,7 @@
 		<ul id="navList">
 			<li><a class="menu" id="blog_nav_sitehome" href="<%=bathPath %>">博客首页</a></li>
 			<li><a class="menu" id="blog_nav_myhome" href="<%=bathPath %>/blog/${userBlogInfo.userUrl}">主页</a></li>
-			<li><a class="menu" id="blog_nav_newpost" href="" rel="nofollow">新随笔</a></li>
+			<li><a class="menu" id="blog_nav_newpost" href="<%=bathPath %>/user/${userBlogInfo.userUrl}/add" rel="nofollow">新随笔</a></li>
 			<li><a class="menu" id="blog_nav_contact" href="" rel="nofollow">联系</a></li>
 			<li><a class="menu" id="blog_nav_rss" href="">订阅</a>
 			<li><a class="menu" id="blog_nav_admin" href="">管理</a></li>

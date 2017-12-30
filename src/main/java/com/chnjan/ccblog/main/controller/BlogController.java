@@ -51,6 +51,15 @@ public class BlogController{
 	}
 	
 	/**
+	 * 显示新增或修改blog
+	 * */
+	@RequestMapping("/user/{userUrl}/{action}")
+	public ModelAndView showEditBlog(@PathVariable String userUrl, @PathVariable String action) {
+		ModelAndView mav = handBlogAction(userUrl,action);
+		return mav;
+	}
+	
+	/**
 	 * 根据url和blogid判断显示哪个页面
 	 * @param userUrl 用户路径
 	 * @param blogId blogid
@@ -59,18 +68,8 @@ public class BlogController{
 	private ModelAndView handRequestByUrl(String userUrl,String blogId) {
 		ModelAndView mav = new ModelAndView();
 		
-		//userUrl为空，直接跳到错误页面
-		if (userUrl==null || "".equals(userUrl)) {
-			mav.setViewName("error");
-			return mav;
-		}
-		
-		//通过url查用户信息
-		UserBlogInfo userBlogInfo = blogUserService.queryUserIdByUrl(userUrl);
-		
-		//对应的用户不存在
-		if (userBlogInfo == null || "".equals(userBlogInfo.getUserId())) {
-			mav.setViewName("error");
+		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl,mav);
+		if (userBlogInfo == null) {
 			return mav;
 		}
 		
@@ -81,8 +80,7 @@ public class BlogController{
 			//查询用户blog列表
 			List<Blog> blogs = blogService.queryBlogListByUid(uid);
 			mav.setViewName("main/blog/personalBlogList");
-			//用户信息
-			mav.addObject("userBlogInfo", userBlogInfo);
+			
 			//blog列表信息
 			mav.addObject("userBlogs", blogs);
 		} else {
@@ -94,8 +92,7 @@ public class BlogController{
 			} else {
 				//blog详情页面
 				mav.setViewName("main/blog/blogDetailPage");
-				//用户信息
-				mav.addObject("userBlogInfo", userBlogInfo);
+				
 				//blog信息
 				mav.addObject("userBlog", blog);
 			}
@@ -103,5 +100,55 @@ public class BlogController{
 		
 		return mav;
 	}
-
+	
+	/**
+	 * 根据用户的url来判断用户是否存在，
+	 * 如果存在，将用户信息设置到ModelAndView
+	 * 如果不存在返回错误页面
+	 * @param userUrl 用户url路径
+	 * @param mav 传入的ModelAndView
+	 * @return UserBlogInfo 用户存在：用户信息对象
+	 * 				不存在：null
+	 * */
+	public UserBlogInfo queryUserBlogInfo(String userUrl, ModelAndView mav) {
+		//userUrl为空，直接跳到错误页面
+		if (userUrl==null || "".equals(userUrl)) {
+			mav.setViewName("error");
+			return null;
+		}
+		
+		//通过url查用户信息
+		UserBlogInfo userBlogInfo = blogUserService.queryUserIdByUrl(userUrl);
+		
+		//对应的用户不存在
+		if (userBlogInfo == null || "".equals(userBlogInfo.getUserId())) {
+			mav.setViewName("error");
+			return null;
+		}
+		
+		//用户信息
+		mav.addObject("userBlogInfo", userBlogInfo);
+		return userBlogInfo;
+	}
+	
+	/**
+	 * 新增或修改blog
+	 * @param userUrl 用户路径
+	 * @param action 动作
+	 * @return ModelAndView 页面
+	 * */
+	private ModelAndView handBlogAction(String userUrl,String action) {
+		ModelAndView mav = new ModelAndView();
+		
+		//判断用户是否已登录，当前用户与userUrl对应的用户是否相同
+		
+		//设置用户信息
+		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl,mav);
+		if (userBlogInfo == null) {
+			return mav;
+		}
+		
+		mav.setViewName("main/blog/blogEdit");
+		return mav;
+	}
 }
