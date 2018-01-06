@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chnjan.ccblog.common.tools.Pagination;
 import com.chnjan.ccblog.main.dao.BlogDao;
 import com.chnjan.ccblog.main.domain.Blog;
 import com.chnjan.ccblog.main.service.BlogService;
@@ -46,12 +47,16 @@ public class BlogServiceImpl implements BlogService {
 	
 	/**
 	 * 查询某个用户的所有blog列表
-	 * @param uid 用户id
+	 * @param userUrl 用户userUrl
+	 * @param page 分页信息对象
 	 * @return List<blog>某个用户的blog列表
 	 * */
-	public List<Blog> queryBlogListByUid(String uid) {
-		
-		return blogDao.queryBlogListByUid(uid);
+	public List<Blog> queryBlogListByUid(String userUrl ,Pagination page) {
+		//查询数据条数
+		int count = blogDao.queryBlogCountByUrl(userUrl);
+		//设置到page对象里
+		page.setTotleCount(count);
+		return blogDao.queryBlogListByUid(userUrl,page);
 	}
 
 }

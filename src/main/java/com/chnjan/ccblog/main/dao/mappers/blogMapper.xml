@@ -55,16 +55,27 @@
 			t.createtime DESC
 	</select>
 	
-	<select id="queryBlogListByUid" resultType="com.chnjan.ccblog.main.domain.Blog" parameterType="String">
+	<!-- 通过userUrl查询所有blog的数量 -->
+	<select id="queryBlogCountByUrl" parameterType="String" resultType="int">
+		SELECT COUNT(*) count
+		FROM t_main_blog t
+		WHERE t.userurl = #{userUrl}
+	</select>
+	
+	<!-- 通过用户id查询所有blog信息，带分页 -->
+	<select id="queryBlogListByUid" resultType="com.chnjan.ccblog.main.domain.Blog" >
 		SELECT t.blogid,t.createtime,t.lastupdatetime,t.title,
-			t.content,t.abstract blogAbstract,t.autorid,u.nickname autorname,t.readcount,t.upupcount
+			t.content,t.abstract blogAbstract,t.autorid,t.userurl,u.nickname autorname,t.readcount,t.upupcount
 		FROM
 			t_main_blog AS t,
-			t_main_userinfo As u
+			t_main_userinfo As u,
+			t_main_userurl as l
 		where t.autorid = u.userid
-		and u.userid = #{uid}
+		and t.autorid = l.userid
+		and l.url = #{userUrl}
 		ORDER BY
 			t.createtime DESC
+		LIMIT #{page.start},#{page.pageSize}
 	</select>
 	
 </mapper>

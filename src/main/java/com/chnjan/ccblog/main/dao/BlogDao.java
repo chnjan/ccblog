@@ -2,6 +2,9 @@ package com.chnjan.ccblog.main.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.chnjan.ccblog.common.tools.Pagination;
 import com.chnjan.ccblog.main.domain.Blog;
 
 
@@ -42,10 +45,18 @@ public interface BlogDao {
 	List<Blog> queryBlogList();
 	
 	/**
+	 * 根据用户url查询blog的数量
+	 * @param userUrl 用户url
+	 * @return int blog数量
+	 * */
+	int queryBlogCountByUrl(String userUrl);
+	
+	/**
 	 * 查询某个用户的所有blog列表
-	 * @param uid 用户id
+	 * @param userUrl 用户userUrl
+	 * @param page 分页信息对象
 	 * @return List<blog>某个用户的blog列表
 	 * */
-	List<Blog> queryBlogListByUid(String uid);
+	List<Blog> queryBlogListByUid(@Param(value = "userUrl") String userUrl ,@Param(value = "page") Pagination page);
 
 }

@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 public class IdGenerate {
 	private static final Logger LOGGER = LogManager.getLogger(IdGenerate.class);
 	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 	/**
 	 * 获取唯一的id
 	 * 由时间戳+6位随机码组成
@@ -22,13 +23,13 @@ public class IdGenerate {
 	public static String generateId() {
 		//唯一id
 		String uniqueId = "";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		
 		//获取6位随机码
 		String randomCode = getRandomCode(6);
 		
 		//结果
-		uniqueId = sdf.format(new Date()) + randomCode;
+		uniqueId = getCurrntTimeNum() + randomCode;
 		LOGGER.debug("生成id："+uniqueId);
 		return uniqueId ;
 	}
@@ -62,6 +63,14 @@ public class IdGenerate {
 		
 		randomCode = sb.toString();
 		return randomCode ;
+	}
+	
+	/**
+	 * 获取当前时间戳
+	 * @return String 当前时间戳，如20180107014552559
+	 * */
+	public static String getCurrntTimeNum() {
+		return sdf.format(new Date());
 	}
 
 }

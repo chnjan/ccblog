@@ -2,6 +2,7 @@ package com.chnjan.ccblog.main.service;
 
 import java.util.List;
 
+import com.chnjan.ccblog.common.tools.Pagination;
 import com.chnjan.ccblog.main.domain.Blog;
 
 
@@ -44,7 +45,8 @@ public interface BlogService {
 	/**
 	 * 查询某个用户的所有blog列表
 	 * @param uid 用户id
+	 * @param page 分页信息对象
 	 * @return List<blog>某个用户的blog列表
 	 * */
-	List<Blog> queryBlogListByUid(String uid);
+	List<Blog> queryBlogListByUid(String uid,Pagination page);
 }

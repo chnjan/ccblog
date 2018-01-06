@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chnjan.ccblog.common.tools.Pagination;
 import com.chnjan.ccblog.main.domain.Blog;
 import com.chnjan.ccblog.main.domain.UserBlogInfo;
 import com.chnjan.ccblog.main.service.BlogService;
@@ -21,11 +23,15 @@ import com.chnjan.ccblog.main.service.BlogUserService;
 @Controller
 public class BlogController{
 	
+	//private final static Logger LOGGER = LogManager.getLogger(BlogController.class);
+	
 	@Autowired
 	private BlogService blogService;
 	
 	@Autowired
 	private BlogUserService blogUserService;
+	
+	private Pagination page;
 
 	@RequestMapping("/blog")
 	public String errorpage() {
@@ -36,8 +42,32 @@ public class BlogController{
 	 * 查询用户blog列表
 	 * */
 	@RequestMapping("/blog/{userUrl}")
-	public ModelAndView showUserBlogList(@PathVariable String userUrl) {
-		return handRequestByUrl(userUrl, null);
+	public ModelAndView showUserBlogList(@PathVariable String userUrl,
+			@RequestParam(value = "page",defaultValue = "1") String currentPage) {
+		ModelAndView mav = new ModelAndView();
+		//查询用户信息
+		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl,mav);
+		if (userBlogInfo == null) {
+			return mav;
+		}
+		
+		//设置分页参数
+		page = new Pagination();
+		//设置每页数量
+		page.setPageSize(10);
+		page.setCurrentPage(currentPage);
+		
+		//查询用户blog列表
+		List<Blog> blogs = blogService.queryBlogListByUid(userUrl,page);
+		
+		System.out.println(page);
+		System.out.println(page.getStart());
+		
+		mav.setViewName("main/blog/personalBlogList");
+		
+		//blog列表信息
+		mav.addObject("userBlogs", blogs);
+		return mav;
 	}
 
 	//http://www.cnblogs.com/itdragon/p/8094722.html
@@ -46,8 +76,29 @@ public class BlogController{
 	 * */
 	@RequestMapping("/blog/{userUrl}/{blogId}.html")
 	public ModelAndView showUserBlog(@PathVariable String userUrl,@PathVariable String blogId) {
-		return handRequestByUrl(userUrl,blogId);
+		ModelAndView mav = new ModelAndView();
+		//查询用户信息
+		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl,mav);
+		if (userBlogInfo == null) {
+			return mav;
+		}
 		
+		//展示blog详情页
+		Blog blog = blogService.queryBlogById(blogId);
+		//blog为空或者userUrl不匹配
+		if (blog == null || !userUrl.equals(blog.getUserUrl())) {
+			//错误页面
+			mav.setViewName("error");
+			return mav;
+		}
+		
+		//blog详情页面
+		mav.setViewName("main/blog/blogDetailPage");
+		
+		//blog信息
+		mav.addObject("userBlog", blog);
+		
+		return mav;
 	}
 	
 	/**
@@ -59,47 +110,6 @@ public class BlogController{
 		return mav;
 	}
 	
-	/**
-	 * 根据url和blogid判断显示哪个页面
-	 * @param userUrl 用户路径
-	 * @param blogId blogid
-	 * @return ModelAndView 页面
-	 * */
-	private ModelAndView handRequestByUrl(String userUrl,String blogId) {
-		ModelAndView mav = new ModelAndView();
-		
-		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl,mav);
-		if (userBlogInfo == null) {
-			return mav;
-		}
-		
-		//通过blogId是否为空来判断是展示个人blog首页还是blog详情页
-		if (blogId==null || "".equals(blogId)) {
-			//展示个人blog首页
-			String uid = userBlogInfo.getUserId();
-			//查询用户blog列表
-			List<Blog> blogs = blogService.queryBlogListByUid(uid);
-			mav.setViewName("main/blog/personalBlogList");
-			
-			//blog列表信息
-			mav.addObject("userBlogs", blogs);
-		} else {
-			//展示blog详情页
-			Blog blog = blogService.queryBlogById(blogId);//这里要根据userid和blogid两个条件一起查
-			if (blog == null) {
-				//错误页面
-				mav.setViewName("error");
-			} else {
-				//blog详情页面
-				mav.setViewName("main/blog/blogDetailPage");
-				
-				//blog信息
-				mav.addObject("userBlog", blog);
-			}
-		}
-		
-		return mav;
-	}
 	
 	/**
 	 * 根据用户的url来判断用户是否存在，

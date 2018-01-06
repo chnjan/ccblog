@@ -11,26 +11,51 @@ import java.util.Date;
  * 博客信息实体类
  */
 public class Blog {
-	//id
+	/**
+	 * id
+	 * */
 	private String blogId;
-	//创建时间
+	/**
+	 * 创建时间
+	 * */
 	private Date createTime;
-	//最近更新时间
+	/**
+	 * 最近更新时间
+	 * */
 	private Date lastUpdateTime;
-	//标题
+	/**
+	 * 标题
+	 * */
 	private String title;
-	//内容
+	/**
+	 * 内容
+	 * */
 	private String content;
-	//内容摘要
+	/**
+	 * 内容摘要
+	 * */
 	private String blogAbstract;
-	//作者id
+	/**
+	 * 作者id
+	 * */
 	private String autorid;
-	//作者名称
+	/**
+	 * 作者url
+	 * */
+	private String userUrl;
+	/**
+	 * 作者名称
+	 * */
 	private String autorName;
-	//阅读量
+	/**
+	 * 阅读量
+	 * */
 	private Integer readCount;
-	//推荐量
+	/**
+	 * 推荐量
+	 * */
 	private Integer upupCount;
+	
 	public String getBlogId() {
 		return blogId;
 	}
@@ -73,6 +98,12 @@ public class Blog {
 	public void setAutorid(String autorid) {
 		this.autorid = autorid;
 	}
+	public String getUserUrl() {
+		return userUrl;
+	}
+	public void setUserUrl(String userUrl) {
+		this.userUrl = userUrl;
+	}
 	public String getAutorName() {
 		return autorName;
 	}
@@ -92,11 +123,13 @@ public class Blog {
 		this.upupCount = upupCount;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Blog [blogId=" + blogId + ", createTime=" + createTime + ", lastUpdateTime=" + lastUpdateTime
 				+ ", title=" + title + ", content=" + content + ", blogAbstract=" + blogAbstract + ", autorid="
-				+ autorid + ", autorName=" + autorName + ", readCount=" + readCount + ", upupCount=" + upupCount + "]";
+				+ autorid + ", userUrl=" + userUrl + ", autorName=" + autorName + ", readCount=" + readCount
+				+ ", upupCount=" + upupCount + "]";
 	}
 	
 }
