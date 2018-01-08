@@ -3,7 +3,9 @@ package com.chnjan.ccblog.pub.ftp;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.SocketException;
 import java.util.Calendar;
 
@@ -67,59 +69,78 @@ public class FtpTools {
 	/**
 	 * 将文件上传到服务器
 	 * @param file 要上传的文件
-	 * @param path 目录,将文件传到次目录下,如chnjan/blog/image/180101
+	 * @param path 目录,将文件传到此目录下,如chnjan/blog/image/180101
 	 * @return String 成功返回文件的全路径，失败返回""空字符串
+	 * 
 	 * */
 	public String upLoadFileToServer(File file,String path) {
-		//返回文件的全路径
+		String fileName = file.getName();
+		try {
+			InputStream inputStream = new FileInputStream(file);
+			return upLoadFileToServer(inputStream, fileName, path);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	/**
+	 * 将文件上传到服务器
+	 * @param fileInputStream 文件输入流
+	 * @param fileName 文件原名，带后缀
+	 * @param path 文件目录,将文件传到ftp服务器此目录下,如chnjan/blog/image/180101
+	 * @return String 成功返回文件的全路径，失败返回""空字符串
+	 * */
+	public String upLoadFileToServer(InputStream fileInputStream, String fileName, String path) {
+		// 返回文件的全路径
 		String fileOnFtpPath = "";
-		
-		//判断文件或路径等于空，返回
-		
+
+		// 判断文件或路径等于空，返回
+
 		FTPClient ftpClient = new FTPClient();
 		try {
-			//连接指定ip,端口
+			// 连接指定ip,端口
 			ftpClient.connect(ftpServerIp, ftpServerPort);
-			//登录用户名和密码
+			// 登录用户名和密码
 			ftpClient.login(ftpUser, ftpPasswd);
-			//设置传输的文件类型为二进制
+			// 设置传输的文件类型为二进制
 			ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-			//返回响应码
+			// 返回响应码
 			int reply = ftpClient.getReplyCode();
-			//通过响应码查看连接是否可用
+			// 通过响应码查看连接是否可用
 			boolean a = FTPReply.isPositiveCompletion(reply);
-			//如果响应码不可用
+			// 如果响应码不可用
 			if (!a) {
 				return fileOnFtpPath;
 			}
-			//进入或创建目录
+			// 进入或创建目录
 			String realPath = cdOrCreatDir(path, ftpClient);
 			if ("".equals(realPath)) {
-				//失败返回
+				// 失败返回
 				return fileOnFtpPath;
 			}
-			
-			//存储文件
-			String sorcename = file.getName();
-			//文件后缀名
-			String nameSuffix = sorcename.substring(sorcename.indexOf(".")); 
-			String filename = IdGenerate.getCurrntTimeNum()+nameSuffix;
-			FileInputStream fileInputStream = new FileInputStream(file);
-			//文件名相同时会覆盖文件
+
+			// 原文件名
+			String sorcename = fileName;// file.getName();
+			// 文件后缀名
+			String nameSuffix = sorcename.substring(sorcename.indexOf(".")).toLowerCase();
+			String filename = IdGenerate.getCurrntTimeNum() + nameSuffix;
+			// FileInputStream fileInputStream = new FileInputStream(file);
+			// 文件名相同时会覆盖文件
 			boolean relt = ftpClient.storeFile(filename, fileInputStream);
-			
+
 			if (relt) {
-				//返回文件的全路径
-				fileOnFtpPath = realPath+filename;
+				// 返回文件的全路径
+				fileOnFtpPath = realPath + filename;
 			}
 
 			ftpClient.disconnect();
-			
+
 		} catch (SocketException e) {
-			
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 		return fileOnFtpPath;

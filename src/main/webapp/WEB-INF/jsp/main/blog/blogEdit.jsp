@@ -14,6 +14,13 @@
 	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/uedit/ueditor.config.js"></script>
 	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/uedit/ueditor.all.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/uedit/lang/zh-cn/zh-cn.js"></script>
+	<style type="text/css">
+	.divtitle{font-size: 16px; margin-bottom: 20px;height: 30px;}
+	.labletitle{margin-left: 10px;}
+	#title{width: 450px;}
+	.input{height: 20px;}
+	.labletype{margin-left: 40px;}
+	</style>
 </head>
 <body>
 	<div id="home">
@@ -21,9 +28,20 @@
 	<div id="main" style="height: 840px;">
 		<div id="mainContent" style="margin-left: 0em;">
 			<div class="forFlow" style="margin-left: 0em;">
+			<form id="savaBlogForm" name="savaBlogForm" action="">
+				<div class="divtitle">
+					<label class="labletitle">标题：</label>
+					<input id="title" name="blog.title" class="input" type="text">
+					<label class="labletype">分类：</label>
+					<select class="input">
+						<option value="1">java</option>
+						<option value="2">linux</option>
+					</select>
+				</div>
 				<div>
 				    <script id="editor" type="text/plain" style="width:948px;height:800px;"></script>
 				</div>
+			</form>
 			</div>
 		</div>
 	</div>

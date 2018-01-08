@@ -44,7 +44,14 @@
   	<url-pattern>/css/*</url-pattern>
   	<url-pattern>/image/*</url-pattern>
   	<url-pattern>/js/*</url-pattern>
+  	<url-pattern>/ueditor/*</url-pattern>
   </servlet-mapping>
+  <!-- 专为ueditor配置 -->
+  <!-- <servlet-mapping>
+      <servlet-name>jsp</servlet-name>
+      <url-pattern>/js/uedit/jsp/*</url-pattern>
+      <url-pattern>*.jsp</url-pattern>
+  </servlet-mapping> -->
   
   <!-- springmvc -->
   <servlet>
@@ -59,6 +66,11 @@
   <servlet-mapping>
   	<servlet-name>springMVC</servlet-name>
   	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>jsp</servlet-name>
+      <url-pattern>/js/uedit/jsp/*</url-pattern>
+      <url-pattern>*.jsp</url-pattern>
   </servlet-mapping>
   
 </web-app>

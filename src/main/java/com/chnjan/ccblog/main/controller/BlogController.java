@@ -2,6 +2,8 @@ package com.chnjan.ccblog.main.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -105,9 +107,33 @@ public class BlogController{
 	 * 显示新增或修改blog
 	 * */
 	@RequestMapping("/user/{userUrl}/{action}")
-	public ModelAndView showEditBlog(@PathVariable String userUrl, @PathVariable String action) {
-		ModelAndView mav = handBlogAction(userUrl,action);
+	public ModelAndView showEditBlog(@PathVariable String userUrl, @PathVariable String action,
+			HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+
+		// 判断用户是否已登录，当前用户与userUrl对应的用户是否相同
+
+		// 设置用户信息
+		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl, mav);
+		if (userBlogInfo == null) {
+			return mav;
+		}
+
+		// 如果是新增
+		if ("add".equals(action)) {
+
+			// 如果是修改
+		} else if ("edit".equals(action)) {
+
+			// 如果都不是
+		} else {
+			mav.setViewName("error");
+			return mav;
+		}
+		mav.setViewName("main/blog/blogEdit");
 		return mav;
+		// ModelAndView mav = handBlogAction(userUrl,action,request);
+		// return mav;
 	}
 	
 	
@@ -141,24 +167,4 @@ public class BlogController{
 		return userBlogInfo;
 	}
 	
-	/**
-	 * 新增或修改blog
-	 * @param userUrl 用户路径
-	 * @param action 动作
-	 * @return ModelAndView 页面
-	 * */
-	private ModelAndView handBlogAction(String userUrl,String action) {
-		ModelAndView mav = new ModelAndView();
-		
-		//判断用户是否已登录，当前用户与userUrl对应的用户是否相同
-		
-		//设置用户信息
-		UserBlogInfo userBlogInfo = queryUserBlogInfo(userUrl,mav);
-		if (userBlogInfo == null) {
-			return mav;
-		}
-		
-		mav.setViewName("main/blog/blogEdit");
-		return mav;
-	}
 }
