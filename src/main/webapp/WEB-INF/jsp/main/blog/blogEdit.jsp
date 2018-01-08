@@ -14,34 +14,38 @@
 	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/uedit/ueditor.config.js"></script>
 	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/uedit/ueditor.all.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/uedit/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript" charset="utf-8" src="<%=bathPath%>/js/jquery/jquery-3.1.0.min.js"></script>
 	<style type="text/css">
 	.divtitle{font-size: 16px; margin-bottom: 20px;height: 30px;}
 	.labletitle{margin-left: 10px;}
 	#title{width: 450px;}
 	.input{height: 20px;}
 	.labletype{margin-left: 40px;}
+	#submit{float: right;width: 40px;}
 	</style>
 </head>
 <body>
 	<div id="home">
 	<jsp:include page="/WEB-INF/jsp/main/blog/blogListHead.jsp"></jsp:include>
-	<div id="main" style="height: 840px;">
+	<div id="main" style="height: 900px;">
 		<div id="mainContent" style="margin-left: 0em;">
 			<div class="forFlow" style="margin-left: 0em;">
-			<form id="savaBlogForm" name="savaBlogForm" action="">
-				<div class="divtitle">
-					<label class="labletitle">标题：</label>
-					<input id="title" name="blog.title" class="input" type="text">
-					<label class="labletype">分类：</label>
-					<select class="input">
-						<option value="1">java</option>
-						<option value="2">linux</option>
-					</select>
-				</div>
+				<form id="savaBlogForm" name="savaBlogForm" method="post">
+					<div class="divtitle">
+						<label class="labletitle">标题：</label>
+						<input id="title" name="title" class="input" type="text">
+						<label class="labletype">分类：</label>
+						<select id="type" name="type" class="input">
+							<option value="1">java</option>
+							<option value="2">linux</option>
+						</select>
+						<input class="input" id="saveblog" type="button" value="发表" onclick="savablog()"/>
+						<input id="content" name="content" type="hidden"/>
+					</div>
+				</form>
 				<div>
 				    <script id="editor" type="text/plain" style="width:948px;height:800px;"></script>
 				</div>
-			</form>
 			</div>
 		</div>
 	</div>
@@ -60,6 +64,14 @@
 		initialFrameHeight: '800',	//初始化高度
 		elementPathEnabled: false	//不显示元素路径
 		});
+    
+    function savablog() {
+    	var content = UE.getEditor('editor').getContent();
+    	document.getElementById("content").value = content;
+		var form = document.getElementById("savaBlogForm");
+		form.action = "<%=bathPath%>/user/${userBlogInfo.userUrl}/save";
+		form.submit();
+	}
 	</script>
 </body>
 </html>

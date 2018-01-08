@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chnjan.ccblog.common.tools.IdGenerate;
 import com.chnjan.ccblog.common.tools.Pagination;
+import com.chnjan.ccblog.common.tools.htmltools.HtmlTool;
 import com.chnjan.ccblog.main.domain.Blog;
 import com.chnjan.ccblog.main.domain.UserBlogInfo;
 import com.chnjan.ccblog.main.service.BlogService;
@@ -108,7 +110,7 @@ public class BlogController{
 	 * */
 	@RequestMapping("/user/{userUrl}/{action}")
 	public ModelAndView showEditBlog(@PathVariable String userUrl, @PathVariable String action,
-			HttpServletRequest request) {
+			HttpServletRequest request,Blog blog) {
 		ModelAndView mav = new ModelAndView();
 
 		// 判断用户是否已登录，当前用户与userUrl对应的用户是否相同
@@ -119,18 +121,52 @@ public class BlogController{
 			return mav;
 		}
 
-		// 如果是新增
+		// 判断动作类型
 		if ("add".equals(action)) {
-
-			// 如果是修改
+			// 新增----------------
+			mav.setViewName("main/blog/blogEdit");
+			return mav;
+		
 		} else if ("edit".equals(action)) {
-
-			// 如果都不是
+			// 修改-----------------
+			mav.setViewName("main/blog/blogEdit");
+		
+		} else if ("save".equals(action)) {
+			//保存-----------------
+			//验证参数是否符合要求
+			if (!validBlog(blog)) {
+				mav.setViewName("errorvalid");
+				return mav;
+			}
+			//设置id
+			blog.setBlogId(IdGenerate.generateId());
+			String content = blog.getContent();
+			
+			//设置摘要
+			//删除html标签
+			String blogAbstract = HtmlTool.delHTMLTag(content);
+			//截取前200位
+			if (blogAbstract.length()>200) {
+				blogAbstract = blogAbstract.substring(0,199);
+			}
+			blog.setBlogAbstract(blogAbstract);
+			
+			//设置用户信息
+			blog.setAutorid(userBlogInfo.getUserId());
+			blog.setUserUrl(userBlogInfo.getUserUrl());
+			
+			//保存
+			blogService.addBlog(blog);
+			
+			//如果保存成功
+			mav.setViewName("forward:/blog/"+userUrl);
+		
+		// 如果都不是
 		} else {
 			mav.setViewName("error");
 			return mav;
 		}
-		mav.setViewName("main/blog/blogEdit");
+		
 		return mav;
 		// ModelAndView mav = handBlogAction(userUrl,action,request);
 		// return mav;
@@ -167,4 +203,23 @@ public class BlogController{
 		return userBlogInfo;
 	}
 	
+	/**
+	 * 验证前台输入的blog信息合法性
+	 * @param blog blog对象
+	 * @return boolean true:没问题 ,false:有问题
+	 * */
+	public boolean validBlog(Blog blog) {
+		if(blog == null) {
+			return false;
+		}
+		String title = blog.getTitle();
+		if (title == null||title.length()>250) {
+			return false;
+		}
+		String content = blog.getContent();
+		if (content == null || content.length()>19000) {
+			return false;
+		}
+		return true;
+	}
 }

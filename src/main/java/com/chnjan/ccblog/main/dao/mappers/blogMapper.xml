@@ -18,17 +18,23 @@
 	
 	<insert parameterType="com.chnjan.ccblog.main.domain.Blog" id="addBlog">
 		insert into t_main_blog (blogid,
-						    	title,
 						    	createtime,
 						    	lastupdatetime,
+						    	title,
 						    	content,
-						    	autorid)
+						    	abstract,
+						    	type,
+						    	autorid,
+						    	userurl)
 						values (#{blogId},
-								#{title},
 						    	sysdate(),
-						    	#{lastUpdateTime},
+						    	sysdate(),
+								#{title},
 						    	#{content},
-						    	#{autorid})
+						    	#{blogAbstract},
+						    	#{type},
+						    	#{autorid},
+						    	#{userUrl})
 	</insert>
 	<select id="queryBlogById" parameterType="String" resultType="com.chnjan.ccblog.main.domain.Blog">
 	 	select * from t_main_blog where blogId = #{blogId}
@@ -48,7 +54,8 @@
 	<!-- 首页展示博客列表查询 -->
 	<select id="queryBlogList" resultType="com.chnjan.ccblog.main.domain.Blog">
 	 	SELECT t.blogid,t.createtime,t.lastupdatetime,t.title,
-			t.content,t.abstract blogAbstract,t.autorid,t.autorid autorname,t.readcount,t.upupcount
+			t.content,t.abstract blogAbstract,t.type,t.autorid,
+			t.autorid autorname,t.readcount,t.upupcount
 		FROM
 			t_main_blog AS t
 		ORDER BY
@@ -65,7 +72,8 @@
 	<!-- 通过用户id查询所有blog信息，带分页 -->
 	<select id="queryBlogListByUid" resultType="com.chnjan.ccblog.main.domain.Blog" >
 		SELECT t.blogid,t.createtime,t.lastupdatetime,t.title,
-			t.content,t.abstract blogAbstract,t.autorid,t.userurl,u.nickname autorname,t.readcount,t.upupcount
+			t.content,t.abstract blogAbstract,t.type,t.autorid,
+			t.userurl,u.nickname autorname,t.readcount,t.upupcount
 		FROM
 			t_main_blog AS t,
 			t_main_userinfo As u,

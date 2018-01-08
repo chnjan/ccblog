@@ -36,6 +36,10 @@ public class Blog {
 	 * */
 	private String blogAbstract;
 	/**
+	 * 类型
+	 * */
+	private String type;
+	/**
 	 * 作者id
 	 * */
 	private String autorid;
@@ -92,6 +96,12 @@ public class Blog {
 	public void setBlogAbstract(String blogAbstract) {
 		this.blogAbstract = blogAbstract;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getAutorid() {
 		return autorid;
 	}
@@ -127,9 +137,9 @@ public class Blog {
 	@Override
 	public String toString() {
 		return "Blog [blogId=" + blogId + ", createTime=" + createTime + ", lastUpdateTime=" + lastUpdateTime
-				+ ", title=" + title + ", content=" + content + ", blogAbstract=" + blogAbstract + ", autorid="
-				+ autorid + ", userUrl=" + userUrl + ", autorName=" + autorName + ", readCount=" + readCount
-				+ ", upupCount=" + upupCount + "]";
+				+ ", title=" + title + ", content=" + content + ", blogAbstract=" + blogAbstract + ", type=" + type
+				+ ", autorid=" + autorid + ", userUrl=" + userUrl + ", autorName=" + autorName + ", readCount="
+				+ readCount + ", upupCount=" + upupCount + "]";
 	}
 	
 }
