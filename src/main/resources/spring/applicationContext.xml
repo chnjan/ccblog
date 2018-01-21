@@ -9,6 +9,19 @@
 
     <context:component-scan base-package="com.chnjan.ccblog.main.service.impl"></context:component-scan>
     
-    
+    <!-- 定时任务管理 -->
+    <bean id="globalTimer" class="com.chnjan.ccblog.pub.timer.globalTimerManage">
+    </bean>
+	
+	<!-- lazy-init="false" autowire="no"  -->
+	<bean id="startQuertz" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- <property name="autoStartup" value="false"/> -->
+        <!-- 管理trigger -->
+        <property name="triggers">
+            <list>
+                <ref bean="updateBlogTrigger" />
+            </list>
+        </property>
+    </bean>
 	
 </beans>

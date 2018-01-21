@@ -12,6 +12,7 @@
   		classpath:spring/applicationContext.xml
   		classpath:mybatis/spring-mybatis.xml
   		classpath:springmvc/springmvc-config.xml
+  		classpath:timer/*.timer.xml
   	</param-value>
   </context-param>
   
@@ -46,6 +47,10 @@
   <!-- spring配置 -->
   <listener>
   	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<listener-class>com.chnjan.ccblog.pub.contentLisener.BusinessContentLisener</listener-class>
   </listener>
   
   <!-- 过滤静态资源:静态资源走tomcat的默认servlet,一定要配置springmvc的servlet前面，不然拦不到 -->

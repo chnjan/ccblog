@@ -64,13 +64,12 @@ public class BlogController{
 		//查询用户blog列表
 		List<Blog> blogs = blogService.queryBlogListByUid(userUrl,page);
 		
-		System.out.println(page);
-		System.out.println(page.getStart());
-		
 		mav.setViewName("main/blog/personalBlogList");
 		
 		//blog列表信息
 		mav.addObject("userBlogs", blogs);
+		//分页信息
+		mav.addObject("page", page);
 		return mav;
 	}
 

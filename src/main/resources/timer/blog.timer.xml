@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    
+    <bean id="updateBlogJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.chnjan.ccblog.pub.timer.blog.UpdateBlogCountTimer"></property>
+        <property name="jobDataMap">
+        	<map>
+        		<entry key="cotent" value="abc" />
+        	</map>
+        </property>
+        <!-- <property name="durability" value="true"></property> -->
+    </bean>
+    <!-- simpleTrigger -->
+    <bean id="updateBlogTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="updateBlogJob" />
+        <property name="startDelay" value="1000" />
+        <property name="repeatInterval" value="10000000" />
+    </bean>
+    <!-- 
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="updateBlogJob" />
+		每天12:00运行一次 
+		<property name="cronExpression" value="0 0 12 * * ?" />
+	</bean>-->
+    
+    
+    <!-- <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean> -->
+			
+</beans>

@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	/* 发布blog暂时不开放，xss攻击问题待解决 xss过滤与富文本存在矛盾，待解决 */
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>edit blog</title>
 	<link href="<%=bathPath %>/css/blog/blog-common.css" type="text/css" rel="stylesheet"/>

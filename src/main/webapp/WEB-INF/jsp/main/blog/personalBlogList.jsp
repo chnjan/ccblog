@@ -13,6 +13,8 @@
 	<title>personal blog List</title>
 	<link href="<%=bathPath %>/css/blog/blog-common.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/bundle-SimpleMemory.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="<%=path %>/js/jquery/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="<%=path %>/js/main/pagina.js"></script>
 </head>
 <body>
 <div id="home">
@@ -40,20 +42,24 @@
 		</div>
 		</c:forEach>
 
+		<input id="pageurl" type="hidden" value="<%=path %>/blog/${userBlogInfo.userUrl}" />
+		<input id="currentpage" type="hidden" value="${page.currentPage}"/>
+		<input id="totlepage" type="hidden" value="${page.totlePage}"/>
 		<div class="topicListFooter">
-			<div class="pager">共14页:&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=1">上一页</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=1">1</a>&nbsp;
-				2&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=3">3</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=4">4</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=5">5</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=6">6</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=7">7</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=8">8</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=9">9</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=3">下一页</a>&nbsp;
-				<a href="http://www.cnblogs.com/yangliguo/default.html?page=14">末页</a>&nbsp;
+			<div class="pager">共${page.totlePage }页:&nbsp;
+				<a href="<%=path %>/blog/${userBlogInfo.userUrl}">首页</a>&nbsp;
+				<a id="pre" href="javascript:void(0);" onclick="prePage()">上一页</a>&nbsp;
+				<a id="next" href="javascript:void(0);" onclick="nextPage()">下一页</a>&nbsp;
+				<a href="<%=path %>/blog/${userBlogInfo.userUrl}?page=${page.totlePage }">末页</a>&nbsp;
+				<select style="width: 40px">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				<a href="void;">跳转</a>&nbsp;
 			</div>
 		</div>
 
@@ -66,7 +72,7 @@
 	</div><!--end: main -->
 	<div class="clear"></div>
 	<div id="footer">
-		Copyright ©2017 chnjan
+		Copyright ©2018 chnjan
 	</div>
 </div>
 </body>

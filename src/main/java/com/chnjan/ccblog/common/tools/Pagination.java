@@ -89,6 +89,14 @@ public class Pagination {
 	public Integer getTotleCount() {
 		return totleCount;
 	}
+	
+	/**
+	 * 获取总页数
+	 * */
+	public Integer getTotlePage() {
+		Integer totlePage = totleCount/pageSize+1;
+		return totlePage;
+	}
 
 	public void setTotleCount(Integer totleCount) {
 		this.totleCount = totleCount;
