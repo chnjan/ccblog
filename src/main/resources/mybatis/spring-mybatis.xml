@@ -11,12 +11,33 @@
 
     <context:property-placeholder location="classpath:properties/jdbc.properties"/>
 
-	<!-- 数据源 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- spring内置数据源 -->
+	
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.main.driver}"/>
 		<property name="url" value="${jdbc.main.url}"/>
 		<property name="username" value="${jdbc.main.username}"/>
 		<property name="password" value="${jdbc.main.password}"/>
+	</bean> -->
+	
+	<!-- spring内置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.main.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.main.url}"/>
+		<property name="user" value="${jdbc.main.username}"/>
+		<property name="password" value="${jdbc.main.password}"/>
+		
+		<!--初始化时获取10个连接，取值应在minPoolSize与maxPoolSize之间。 -->
+        <property name="initialPoolSize" value="12"></property>
+        <!--连接池中保留的最小连接数。 -->
+        <property name="minPoolSize" value="10"></property>
+        <!--连接池中保留的最大连接数。 -->
+        <property name="maxPoolSize" value="100"></property>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。 -->
+        <property name="acquireIncrement" value="10"></property>
+        <!--最大空闲时间,1500秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+        <property name="maxIdleTime" value="1500"></property>
+		
 	</bean>
 	
 	<!-- 配置mybatis sqlSessionFactory-->
