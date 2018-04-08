@@ -11,12 +11,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>personal blog List</title>
+	<link href="<%=bathPath %>/css/auth/auth.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/blog-common.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/bundle-SimpleMemory.css" type="text/css" rel="stylesheet"/>
 	<script type="text/javascript" src="<%=path %>/js/jquery/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="<%=path %>/js/main/pagina.js"></script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/main/auth/loginInfo.jsp"></jsp:include>
 <div id="home">
 	<%-- <%@include file="/WEB-INF/jsp/main/blog/blogListHead.jsp" %> --%>
 	<jsp:include page="/WEB-INF/jsp/main/blog/blogListHead.jsp"></jsp:include>
@@ -51,15 +53,15 @@
 				<a id="pre" href="javascript:void(0);" onclick="prePage()">上一页</a>&nbsp;
 				<a id="next" href="javascript:void(0);" onclick="nextPage()">下一页</a>&nbsp;
 				<a href="<%=path %>/blog/${userBlogInfo.userUrl}?page=${page.totlePage }">末页</a>&nbsp;
-				<select style="width: 40px">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
+				<select id="selctpage" style="width: 40px">
+					<c:if test="${page.totlePage>0}">
+						<c:forEach begin="1" end="${page.totlePage }" varStatus="statu">
+							<option value="${statu.index }">${statu.index }</option>
+						</c:forEach>
+					</c:if>
+					
 				</select>
-				<a href="void;">跳转</a>&nbsp;
+				<a href="javascript:void(0);" onclick="gotoPage()">跳转</a>&nbsp;
 			</div>
 		</div>
 

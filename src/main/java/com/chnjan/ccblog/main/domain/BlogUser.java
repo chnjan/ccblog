@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * @author chenjian
- * 用户信息实体
+ * 用户基本信息实体（关注当前登录的用户）
  * 2017-12-24
  */
 public class BlogUser {

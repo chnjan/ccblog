@@ -59,6 +59,17 @@ function lastPage() {
 /**
  * 跳到第x页
  * */
-function gotoPage(page) {
-	
+function gotoPage() {
+	//指定的页数
+	var selctpage = $("#selctpage").val();
+	//url
+	var pageUrl = $("#pageurl").val();
+	//当前页
+	var currentpage = $("#currentpage").val();
+	//选择当前页数就直接返回不刷新
+	if(selctpage==currentpage)
+	{
+		return;
+	}
+	location.href = pageUrl + "?page=" + selctpage;
 }

@@ -10,10 +10,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>blog detail</title>
+	<link href="<%=bathPath %>/css/auth/auth.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/blog-common.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/bundle-SimpleMemory.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/main/auth/loginInfo.jsp"></jsp:include>
 <div id="home">
 	<%-- <%@include file="/WEB-INF/jsp/main/blog/blogListHead.jsp" %> --%>
 	<jsp:include page="/WEB-INF/jsp/main/blog/blogListHead.jsp"></jsp:include>

@@ -4,7 +4,7 @@ package com.chnjan.ccblog.main.domain;
 /**
  * @author chenjian
  * 2017-12-27
- * 用户blog信息实体
+ * 用户blog信息实体（关注blog信息）
  */
 public class UserBlogInfo {
 
