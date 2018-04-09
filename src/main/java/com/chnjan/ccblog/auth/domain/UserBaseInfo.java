@@ -1,5 +1,5 @@
 
-package com.chnjan.ccblog.main.domain;
+package com.chnjan.ccblog.auth.domain;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  * 用户基本信息实体（关注当前登录的用户）
  * 2017-12-24
  */
-public class BlogUser {
+public class UserBaseInfo {
 	
 	private String userId;			//用户id
 	private String nickName;		//昵称

@@ -12,7 +12,7 @@
 		<result column="commentcount" property="commentCount"/>
 	</resultMap>
 	
-	<insert parameterType="com.chnjan.ccblog.main.domain.BlogUser" id="addUser">
+	<!-- <insert parameterType="com.chnjan.ccblog.main.domain.BlogUser" id="addUser">
 		insert into t_main_blog (blogid,
 						    	title,
 						    	createtime,
@@ -41,7 +41,7 @@
 		where blogId = #{blogId}
 	</update>
 	
-	<!-- 首页展示博客列表查询 -->
+	首页展示博客列表查询
 	<select id="queryBlogList" resultType="com.chnjan.ccblog.main.domain.Blog">
 	 	SELECT t.blogid,t.createtime,t.lastupdatetime,t.title,
 			t.content,t.autorid,t.autorid autorname,t.readcount,t.upupcount
@@ -49,7 +49,7 @@
 			t_main_blog AS t
 		ORDER BY
 			t.createtime DESC
-	</select>
+	</select> -->
 	
 	<!-- 通过url查询用户id -->
 	<select id="queryUserIdByUrl" parameterType="String" resultMap="rmBlogUser">

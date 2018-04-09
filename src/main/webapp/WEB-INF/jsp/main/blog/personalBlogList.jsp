@@ -48,7 +48,7 @@
 		<input id="currentpage" type="hidden" value="${page.currentPage}"/>
 		<input id="totlepage" type="hidden" value="${page.totlePage}"/>
 		<div class="topicListFooter">
-			<div class="pager">共${page.totlePage }页:&nbsp;
+			<div class="pager">共${page.totlePage }页，第${page.currentPage}页：&nbsp;
 				<a href="<%=path %>/blog/${userBlogInfo.userUrl}">首页</a>&nbsp;
 				<a id="pre" href="javascript:void(0);" onclick="prePage()">上一页</a>&nbsp;
 				<a id="next" href="javascript:void(0);" onclick="nextPage()">下一页</a>&nbsp;

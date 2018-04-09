@@ -9,10 +9,10 @@ package com.chnjan.ccblog.common.tools;
  */
 public class StringUtils {
 
-	public static Boolean isnoContent(String inString) {
+	public static Boolean isHaveContent(String inString) {
 		if (inString==null||"".equals(inString)) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 }
