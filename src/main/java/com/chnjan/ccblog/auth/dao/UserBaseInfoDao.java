@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chnjan.ccblog.auth.dao.mappers;
+package com.chnjan.ccblog.auth.dao;
 
 import com.chnjan.ccblog.auth.domain.UserBaseInfo;
 
@@ -24,4 +24,11 @@ public interface UserBaseInfoDao {
 	 * @return String 返回密码或空
 	 * */
 	String queryUserPswdByLgCnt(String loginAccount);
+	
+	/**
+	 * 更新用户登录时间
+	 * @param uid 用户id
+	 * @return int 受影响行数
+	 * */
+	int updateUserLogintime(String uid);
 }

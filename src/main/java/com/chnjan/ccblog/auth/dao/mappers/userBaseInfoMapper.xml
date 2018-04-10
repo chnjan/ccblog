@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chnjan.ccblog.auth.dao.UserBaseInfoDao">
+	<resultMap type="com.chnjan.ccblog.auth.domain.UserBaseInfo" id="userbaseinfo">
+		<id column="userId" property="userId"/>
+		<result column="nickName" property="nickName"/>
+		<result column="rigisttime" property="rigistTime"/>
+		<result column="lastlogintime" property="lastLoginTime"/>
+		<result column="email" property="email"/>
+		<result column="phone" property="phone"/>
+		<result column="qq" property="qq"/>
+	</resultMap>
+		
+	<!-- 通过userid查询用户基本信息 -->
+	<select id="queryUserBaseById" parameterType="String" resultMap="userbaseinfo">
+	 	select t.userid,t.nickname,t.rigisttime,t.lastlogintime,t.email,t.phone,t.qq
+ 		from t_main_userinfo t
+		where t.userid = #{uid}
+	</select>
+	
+	<!-- 通过用户登录账号查询用户密码 -->
+	<select id="queryUserPswdByLgCnt" parameterType="String" resultType="String">
+	 	select t.password 
+	 	from t_main_userpwd t
+		where t.loginaccount = #{loginAccount}
+	</select>
+	
+	<!-- 更新用户信息基本 -->
+	<update id="updateUserLogintime" parameterType="String">
+		update t_main_userinfo t
+		set t.lastlogintime = sysdate()
+		where t.userid = #{uid}
+	</update>
+</mapper>

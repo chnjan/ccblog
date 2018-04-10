@@ -35,8 +35,8 @@
         <property name="maxPoolSize" value="100"></property>
         <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。 -->
         <property name="acquireIncrement" value="10"></property>
-        <!--最大空闲时间,1500秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
-        <property name="maxIdleTime" value="1500"></property>
+        <!--最大空闲时间,3600秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+        <property name="maxIdleTime" value="3600"></property>
 		
 	</bean>
 	
