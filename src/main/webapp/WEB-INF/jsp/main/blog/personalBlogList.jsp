@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>personal blog List</title>
+	<title>${userBlogInfo.nickName}的blog</title>
 	<link href="<%=bathPath %>/css/auth/auth.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/blog-common.css" type="text/css" rel="stylesheet"/>
 	<link href="<%=bathPath %>/css/blog/bundle-SimpleMemory.css" type="text/css" rel="stylesheet"/>

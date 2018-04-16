@@ -3,6 +3,8 @@
  */
 package com.chnjan.ccblog.auth.service.impl;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -46,6 +48,17 @@ public class UserBaseInfoServiceImpl implements UserBaseInfoService {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * 根据用户登录名查询url，userid
+	 * @param uid 用户id
+	 * @return UserBaseInfo 用户基本信息对象
+	 * 
+	 * */
+	@Override
+	public Map<String, Object> getUserUrlInfoByLgCnt(String loginAccount) {
+		return userBaseInfoDao.queryUrlByLgCnt(loginAccount);
 	}
 
 	/**

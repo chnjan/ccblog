@@ -3,6 +3,8 @@
  */
 package com.chnjan.ccblog.auth.service;
 
+import java.util.Map;
+
 import com.chnjan.ccblog.auth.domain.UserBaseInfo;
 
 /**
@@ -27,6 +29,13 @@ public interface UserBaseInfoService {
 	 * */
 	void updateLoginTime(String uid);
 	
+	/**
+	 * 根据用户登录账号查询url和id
+	 * @param uid 用户id
+	 * @return UserBaseInfo 用户基本信息对象
+	 * 
+	 * */
+	Map<String, Object> getUserUrlInfoByLgCnt(String loginAccount);
 	/**
 	 * 根据用户id查询
 	 * @param uid 用户id

@@ -4,3 +4,11 @@
 #logindiv{float: right; margin-right: 50px;}
 .login_regin{float: left;font-size: 13px;line-height: 24px;margin-left: 20px;
 				color: #333;}
+				
+#table_login{float: right;margin: 80px 80px auto auto;border: 2px solid #4499ff;height: 250px;width: 400px;}
+#login_thead{margin-left: 12px;}
+.input_login{font-size: 15px;height: 25px;padding: 0 15px;width: 200px;margin-left: 28px;}
+#vali_passimg{font-size: 15px;height: 25px;padding: 0 10px;width: 60px;margin-left: 28px;float: left;}
+#span_vali{float: left;display: block;width: 25px;height: 25px;
+			background-position: 0px 0px;cursor: hand; }
+#span_hasvali{display: block;float: left;height: 25px;width: 19px;}

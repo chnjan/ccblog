@@ -23,7 +23,7 @@ import com.chnjan.ccblog.main.service.BlogService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/applicationContext.xml",
-	"classpath:mybatis/spring-mybatis.xml"})
+	"classpath:mybatis/spring-mybatis.xml","classpath:timer/*.timer.xml"})
 public class BlogTest {
 	@Resource
 	private BlogService blogService;

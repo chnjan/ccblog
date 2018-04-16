@@ -4,7 +4,7 @@
 <div id="head_top">
 	<div id="logindiv">
 		<c:if test="${empty sessionScope.user}">
-			<a class="login_regin" href="${pageContext.request.contextPath }/user/to_login.action">登录</a>
+			<a class="login_regin" href="${pageContext.request.contextPath }/user/to_login">登录</a>
 			<a class="login_regin" href="javascript:void(0);">注册</a>
 		</c:if>
 		<c:if test="${!empty sessionScope.user}">

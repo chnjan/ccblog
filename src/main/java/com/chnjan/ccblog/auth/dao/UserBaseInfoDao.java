@@ -3,6 +3,8 @@
  */
 package com.chnjan.ccblog.auth.dao;
 
+import java.util.Map;
+
 import com.chnjan.ccblog.auth.domain.UserBaseInfo;
 
 /**
@@ -24,6 +26,13 @@ public interface UserBaseInfoDao {
 	 * @return String 返回密码或空
 	 * */
 	String queryUserPswdByLgCnt(String loginAccount);
+	
+	/**
+	 * 通过用户登录名查询用户url
+	 * @param loginAcount 登录账号
+	 * @return String 返回密码或空
+	 * */
+	Map<String, Object> queryUrlByLgCnt(String loginAccount);
 	
 	/**
 	 * 更新用户登录时间

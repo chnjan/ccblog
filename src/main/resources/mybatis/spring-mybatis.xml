@@ -44,14 +44,21 @@
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
-		<property name="mapperLocations" value="classpath:com/chnjan/ccblog/main/dao/mappers/*.xml"/>
+		<!-- <property name="mapperLocations" value="classpath:com/chnjan/ccblog/main/dao/mappers/*.xml"/> -->
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:com/chnjan/ccblog/main/dao/mappers/*.xml</value>
+				<value>classpath:com/chnjan/ccblog/auth/dao/mappers/*.xml</value>
+			</array>
+		</property>
 	</bean>
 	
 	
 	<!-- 配置扫描的dao接口代理bean针对包 -->
-   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
         <!-- 这里的basePackage 指定了dao层接口路径，这里的dao接口不用自己实现   -->
-        <property name="basePackage" value="com.chnjan.ccblog.main.dao" />  
+        <property name="basePackage" value="com.chnjan.ccblog.main.dao
+        									,com.chnjan.ccblog.auth.dao" />
         <!-- 如果只有一个数据源的话可以不用指定，但是如果有多个数据源的话必须要指定  --> 
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" /> 
        	<!-- 直接指定了sqlsessionTemplate名称，这个和上面的其实是一样的   -->

@@ -27,6 +27,14 @@
 		where t.loginaccount = #{loginAccount}
 	</select>
 	
+	<!-- 通过用户登录账号查询用户密码 -->
+	<select id="queryUrlByLgCnt" parameterType="String" resultType="java.util.Map">
+	 	select t.userid,u.url
+	 	from t_main_userpwd t,t_main_userurl u
+		where t.loginaccount = #{loginAccount}
+		and t.userid = u.userid
+	</select>
+	
 	<!-- 更新用户信息基本 -->
 	<update id="updateUserLogintime" parameterType="String">
 		update t_main_userinfo t
