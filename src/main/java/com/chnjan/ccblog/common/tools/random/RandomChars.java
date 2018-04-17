@@ -5,6 +5,7 @@ package com.chnjan.ccblog.common.tools.random;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Random;
 
 import org.springframework.util.StringUtils;
 
@@ -106,6 +107,16 @@ public class RandomChars {
 		
 		randomCode = sb.toString();
 		return randomCode ;
+	}
+	
+	/**
+	 * 返回指定的范围的整数
+	 * @param maxrd 随机数最大值
+	 * @return int 返回0-maxrd范围内的随机int,不包含maxrd
+	 * */
+	public static int getRandomInt(int maxrd) {
+		Random random = SingletonRandomClss.sr;
+		return random.nextInt(maxrd);
 	}
 
 	//随机数算法及种子定义

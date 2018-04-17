@@ -3,18 +3,23 @@
  */
 package com.chnjan.ccblog.auth.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chnjan.ccblog.auth.service.UserBaseInfoService;
+import com.chnjan.ccblog.common.tools.image.RandomImage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -99,7 +104,25 @@ public class UserBaseInfoController {
 	 * 
 	 * */
 	@RequestMapping("/user/getvaliImg")
-	public void getValiImg() {
+	public void getValiImg(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		
+		//生成随机验证码图片
+		Map<String, Object> imgs = RandomImage.getValidImageAndStr();
+		
+		//随机码
+		session.setAttribute("valicode", imgs.get("str"));
+		BufferedImage valiImg = (BufferedImage) imgs.get("img");
+		//设置响应内容为png图片
+		response.setContentType("image/png");
+		OutputStream os = null;
+		try {
+			os = response.getOutputStream();
+			ImageIO.write(valiImg, "png", os);
+			os.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(imgs.get("str"));
 	}
 }

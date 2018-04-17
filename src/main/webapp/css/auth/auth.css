@@ -5,7 +5,7 @@
 .login_regin{float: left;font-size: 13px;line-height: 24px;margin-left: 20px;
 				color: #333;}
 				
-#table_login{float: right;margin: 80px 80px auto auto;border: 2px solid #4499ff;height: 250px;width: 400px;}
+#table_login{float: right;margin: 80px 80px auto auto;border: 2px solid #4499ff;height: 220px;width: 310px;}
 #login_thead{margin-left: 12px;}
 .input_login{font-size: 15px;height: 25px;padding: 0 15px;width: 200px;margin-left: 28px;}
 #vali_passimg{font-size: 15px;height: 25px;padding: 0 10px;width: 60px;margin-left: 28px;float: left;}
