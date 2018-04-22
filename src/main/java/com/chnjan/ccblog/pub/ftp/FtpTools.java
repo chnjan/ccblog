@@ -13,6 +13,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
 import com.chnjan.ccblog.common.tools.IdGenerate;
+import com.chnjan.ccblog.pub.sysparam.SystemParamUtil;
 
 /**
  * @author chenjian
@@ -21,11 +22,6 @@ import com.chnjan.ccblog.common.tools.IdGenerate;
  */
 public class FtpTools {
 
-	private String ftpServerIp = "192.168.18.128";
-	private int ftpServerPort = 21;
-	private String ftpUser = "ftpimg";
-	private String ftpPasswd = "ftpimg123456";
-	
 	/**
 	 * 获取图片存储目录(用于管理图片文件路径)
 	 * @param userUrl 用Url
@@ -97,7 +93,13 @@ public class FtpTools {
 
 		// 判断文件或路径等于空，返回
 
+		//文件服务器连接信息
 		FTPClient ftpClient = new FTPClient();
+		String ftpServerIp = SystemParamUtil.getSysValue("ftp.image.ServerIp");//"192.168.18.128";
+		int ftpServerPort = Integer.valueOf(SystemParamUtil.getSysValue("ftp.image.ServerPort"));//21;
+		String ftpUser = SystemParamUtil.getSysValue("ftp.image.User");//"ftpimg";
+		String ftpPasswd = SystemParamUtil.getSysValue("ftp.image.Passwd");//"ftpimg123456";
+		
 		try {
 			// 连接指定ip,端口
 			ftpClient.connect(ftpServerIp, ftpServerPort);
@@ -185,39 +187,5 @@ public class FtpTools {
 		return dir;
 	}
 
-	
-	
-	public String getFtpServerIp() {
-		return ftpServerIp;
-	}
-
-	public void setFtpServerIp(String ftpServerIp) {
-		this.ftpServerIp = ftpServerIp;
-	}
-
-	public int getFtpServerPort() {
-		return ftpServerPort;
-	}
-
-	public void setFtpServerPort(int ftpServerPort) {
-		this.ftpServerPort = ftpServerPort;
-	}
-
-	public String getFtpUser() {
-		return ftpUser;
-	}
-
-	public void setFtpUser(String ftpUser) {
-		this.ftpUser = ftpUser;
-	}
-
-	public String getFtpPasswd() {
-		return ftpPasswd;
-	}
-
-	public void setFtpPasswd(String ftpPasswd) {
-		this.ftpPasswd = ftpPasswd;
-	}
-	
 	
 }

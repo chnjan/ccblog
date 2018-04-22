@@ -44,6 +44,7 @@ public class UserBaseInfoServiceImpl implements UserBaseInfoService {
 		
 		//判断加密后的密码是否相同
 		if (pawd.equals(passWord)) {
+			
 			return true;
 		}
 		

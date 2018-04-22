@@ -51,13 +51,25 @@ public class UserBaseInfoController {
 	public void loginValid(HttpServletRequest request,HttpServletResponse response) {
 		String loginAcount = request.getParameter("loginName");
 		String passwd = request.getParameter("passWord");
-		//验证账号密码是否有效
-		boolean isok = userBaseInfoService.validUserLogin(loginAcount, passwd);
 		
-		ObjectMapper objectMapper = new ObjectMapper();
 		String code = "";
 		String desc = "";
 		ObjectNode data = null;
+		
+		//验证码
+		String valicode = request.getParameter("valicode");
+		//取出服务器session里的验证码
+		String realValicode = (String) request.getSession().getAttribute("valicode");
+		//验证图片随机码
+		if (valicode == null || !valicode.equalsIgnoreCase(realValicode)) {
+			code = "0";
+			desc = "验证码错误";
+			returnData(code, desc, data, response);
+			return;
+		}
+		
+		//验证账号密码是否有效
+		boolean isok = userBaseInfoService.validUserLogin(loginAcount, passwd);
 		
 		if (isok) {
 			//账号密码有效
@@ -65,14 +77,29 @@ public class UserBaseInfoController {
 			desc = "success";
 			//查询用户url信息
 			Map<String, Object> urlInfo = userBaseInfoService.getUserUrlInfoByLgCnt(loginAcount);
+			ObjectMapper objectMapper = new ObjectMapper();
 			data = objectMapper.createObjectNode();
 			data.put("userurl", (String)urlInfo.get("url"));
 			data.put("userid", (String)urlInfo.get("userid"));
+			//更新用户登录时间
+			userBaseInfoService.updateLoginTime((String)urlInfo.get("userid"));
 		}else {
 			//账号密码无效
 			code = "0";
 			desc = "账号或密码错误";
 		}
+		returnData(code, desc, data, response);
+	}
+	
+	/**
+	 * 返回登录结果
+	 * @param code 结果标志，1成功，0失败
+	 * @param desc 结果描述
+	 * @param data 登录数据
+	 * @param response 响应对象
+	 * */
+	private void returnData(String code,String desc,ObjectNode data,HttpServletResponse response) {
+		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectNode root = objectMapper.createObjectNode();
 		root.put("code", code);
 		root.put("desc", desc);
@@ -96,7 +123,6 @@ public class UserBaseInfoController {
 				printWriter.close();
 			}
 		}
-		//System.out.println(rslt);
 	}
 	
 	/**
