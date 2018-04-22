@@ -40,7 +40,7 @@ public class UserBaseInfoController {
 	 * 
 	 * 跳转到登录页面
 	 * */
-	@RequestMapping("/user/to_login")
+	@RequestMapping("/signin/to_login")
 	public String toLoginPage() {
 		return "main/auth/userLoginPage";
 	}
@@ -49,7 +49,7 @@ public class UserBaseInfoController {
 	 * 登录验证
 	 * 
 	 * */
-	@RequestMapping("/user/login")
+	@RequestMapping("/signin/login")
 	public void loginValid(HttpServletRequest request,HttpServletResponse response) {
 		String loginAcount = request.getParameter("loginName");
 		String passwd = request.getParameter("passWord");
@@ -96,7 +96,7 @@ public class UserBaseInfoController {
 			userLoginCall.setLoginAccount(loginAcount);
 			userLoginCall.setBaseInfo(baseInfo);
 			//将登录的信息放到session
-			session.setAttribute(userId, userLoginCall);
+			session.setAttribute("loginCall", userLoginCall);
 			
 		}else {
 			//账号密码无效
@@ -144,7 +144,7 @@ public class UserBaseInfoController {
 	 * 返回验证码图片
 	 * 
 	 * */
-	@RequestMapping("/user/getvaliImg")
+	@RequestMapping("/signin/getvaliImg")
 	public void getValiImg(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		

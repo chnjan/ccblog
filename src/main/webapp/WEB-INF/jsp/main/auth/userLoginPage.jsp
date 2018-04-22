@@ -18,7 +18,7 @@
 var content = "<%= bathPath%>";
 $(document).ready(function(){
 	$("#span_vali").on("click",function(){
-		$("#valiImg").attr("src","<%=path %>/user/getvaliImg?b="+Math.random());
+		$("#valiImg").attr("src","<%=path %>/signin/getvaliImg?b="+Math.random());
 	});
 	$("#lgin").on("click",login);
 	$("#loginName").on("focus",function(){
@@ -52,7 +52,7 @@ $(document).ready(function(){
 							<span id="span_hasvali"></span>
 						</td>
 						<td width="65%">
-							<img id="valiImg" style="width: 100px;height: 25px;float: left;" alt="验证码" src="<%=path %>/user/getvaliImg" />
+							<img id="valiImg" style="width: 100px;height: 25px;float: left;" alt="验证码" src="<%=path %>/signin/getvaliImg" />
 							<span id="span_vali" style="background-image:url('<%=path %>/image/auth/refesh.jpg');"></span>
 						</td>
 					</tr>

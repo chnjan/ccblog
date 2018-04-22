@@ -3,10 +3,6 @@
 <intercepturl>
 	<!-- 需要登录验证的url -->
 	<loginvalidlist>
-		<url>/user/</url>
-		<url>/user/sdsa</url>
-		<url> /user/sa </url>
-		<url>/user/</url>
-		<url>/user/</url>
+		<url>/user</url>
 	</loginvalidlist>
 </intercepturl>

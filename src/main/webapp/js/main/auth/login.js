@@ -8,12 +8,12 @@
 function login() {
 	var loginName = $("#loginName").val();
 	var passWord = $("#passWord").val();
-	var urlst = content + "/user/login";
-	var parm = "loginName="+loginName+"&passWord="+passWord;
+	var vilicode = $("#vali_passimg").val();
+	var urlst = content + "/signin/login";
+	var parm = "loginName="+loginName+"&passWord="+passWord+"&valicode="+vilicode;
 	$.ajax({
 		url:urlst,
 		type:"POST",
-		contenttype :"application/x-www-form-urlencoded;charset=utf-8", 
 		data:parm,
 		success:function(msg){
 			//var msgobj = eval('('+msg+')');
