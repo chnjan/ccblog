@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.chnjan.ccblog.pub.secure.String4Secure;
 import com.chnjan.ccblog.pub.secure.msgdigest.Md5;
+import com.chnjan.ccblog.pub.secure.msgdigest.Sha;
 
 /**
  * @author chenjian
@@ -31,6 +32,27 @@ public class SecureStringTest {
 	public void testMd5() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		String string = "sfdsfdsfsf";
 		String rString = Md5.digest(string);
+		System.out.println(rString);
+	}
+	
+	@Test
+	public void testSha1() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		String string = "sfdsfdsfsf";
+		String rString = Sha.digestSha1(string);
+		System.out.println(rString);
+	}
+	
+	@Test
+	public void testSha256() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		String string = "sfdsfdsfsf";
+		String rString = Sha.digestSha256(string);
+		System.out.println(rString);
+	}
+	
+	@Test
+	public void testSha512() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		String string = "sfdsfdsfsf";
+		String rString = Sha.digestSha512(string);
 		System.out.println(rString);
 	}
 }

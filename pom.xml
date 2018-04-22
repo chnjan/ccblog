@@ -29,6 +29,8 @@
   	<jsoninjava-version>20160810</jsoninjava-version>
   	<quartz-version>2.3.0</quartz-version>
   	<jackson-version>2.9.4</jackson-version>
+  	<dom4j-version>1.6.1</dom4j-version>
+  	<apache-collections-version>4.1</apache-collections-version>
   </properties>
   
   <dependencies>
@@ -205,6 +207,19 @@
 	    <version>${quartz-version}</version>
 	</dependency>
 	
+	<!-- dom4j -->
+	<dependency>
+	    <groupId>dom4j</groupId>
+	    <artifactId>dom4j</artifactId>
+	    <version>${dom4j-version}</version>
+	</dependency>
+	
+	<!-- apache commons collection -->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-collections4</artifactId>
+	    <version>${apache-collections-version}</version>
+	</dependency>
 		
   </dependencies>
   

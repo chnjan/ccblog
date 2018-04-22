@@ -10,7 +10,11 @@ package com.chnjan.ccblog.pub.secure;
  */
 public class String4Secure {
 
-	private static char[] chartable = {'1','2','3','4','5','6','7','8','9','0'
+	@SuppressWarnings("unused")
+	private static char[] chartable1 = {'1','2','3','4','5','6','7','8','9','0'
+			,'A','B','C','D','E','F'};
+	
+	private static char[] chartable = {'G','H','J','K','L','M','N','P','Q','R'
 			,'A','B','C','D','E','F'};
 	
 	public static String HexbyteToString(byte[] byteArry) {

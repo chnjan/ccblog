@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- url拦截配置 -->
+<intercepturl>
+	<!-- 需要登录验证的url -->
+	<loginvalidlist>
+		<url>/user/</url>
+		<url>/user/sdsa</url>
+		<url> /user/sa </url>
+		<url>/user/</url>
+		<url>/user/</url>
+	</loginvalidlist>
+</intercepturl>

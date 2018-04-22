@@ -6,8 +6,6 @@ package com.chnjan.ccblog.pub.secure.msgdigest;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-
 import org.springframework.util.StringUtils;
 
 import com.chnjan.ccblog.pub.secure.String4Secure;
@@ -22,7 +20,7 @@ public class Md5 {
 	/**
 	 * 使用MD5算法对内容进行摘要加密
 	 * @param message 要加密的内容
-	 * @return 返回密文,入参无内容返回""
+	 * @return 返回密文,入参无内容返回""，32位16进制字符串
 	 * @throws NoSuchAlgorithmException 
 	 * @throws UnsupportedEncodingException 
 	 * */

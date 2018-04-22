@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.chnjan.ccblog.auth.domain.UserBaseInfo;
+import com.chnjan.ccblog.auth.domain.UserLoginCall;
 import com.chnjan.ccblog.auth.service.UserBaseInfoService;
 import com.chnjan.ccblog.common.tools.image.RandomImage;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,7 +61,8 @@ public class UserBaseInfoController {
 		//验证码
 		String valicode = request.getParameter("valicode");
 		//取出服务器session里的验证码
-		String realValicode = (String) request.getSession().getAttribute("valicode");
+		HttpSession session = request.getSession();
+		String realValicode = (String) session.getAttribute("valicode");
 		//验证图片随机码
 		if (valicode == null || !valicode.equalsIgnoreCase(realValicode)) {
 			code = "0";
@@ -79,10 +82,22 @@ public class UserBaseInfoController {
 			Map<String, Object> urlInfo = userBaseInfoService.getUserUrlInfoByLgCnt(loginAcount);
 			ObjectMapper objectMapper = new ObjectMapper();
 			data = objectMapper.createObjectNode();
-			data.put("userurl", (String)urlInfo.get("url"));
-			data.put("userid", (String)urlInfo.get("userid"));
+			String url = (String)urlInfo.get("url");
+			String userId = (String)urlInfo.get("userid");
+			data.put("userurl", url);
+			data.put("userid", userId);
 			//更新用户登录时间
-			userBaseInfoService.updateLoginTime((String)urlInfo.get("userid"));
+			userBaseInfoService.updateLoginTime(userId);
+			
+			UserBaseInfo baseInfo = userBaseInfoService.getUserBaseInfo(userId);
+			UserLoginCall userLoginCall = new UserLoginCall();
+			userLoginCall.setUserId(userId);
+			userLoginCall.setUserUrl(url);
+			userLoginCall.setLoginAccount(loginAcount);
+			userLoginCall.setBaseInfo(baseInfo);
+			//将登录的信息放到session
+			session.setAttribute(userId, userLoginCall);
+			
 		}else {
 			//账号密码无效
 			code = "0";
