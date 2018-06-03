@@ -8,8 +8,8 @@
 			<h3 class="catListTitle">公告</h3>
 			<div id="blog-news">
 				<div id="profile_block">昵称：
-					<a href="http://home.cnblogs.com/u/skyfsm/">${userBlogInfo.nickName}</a><br>
-					博龄：<a title="入坑时间：2017-01-09" href="http://home.cnblogs.com/u/skyfsm/">11个月</a><br>
+					<a href="javascript:void(0)">${userBlogInfo.nickName}</a><br>
+					博龄：<a title="入坑时间：2017-01-09" href="javascript:void(0)">11个月</a><br>
 					<!-- 粉丝：<a href="http://home.cnblogs.com/u/skyfsm/followers/">144</a><br>
 					关注：<a href="http://home.cnblogs.com/u/skyfsm/followees/">20</a>
 					<div id="p_b_follow"><a onclick="follow('0615e00a-49d6-e611-845c-ac853d9f53ac')" href="javascript:void(0);">+加关注</a></div> -->
@@ -55,7 +55,7 @@
 			
 		<div id="leftcontentcontainer">
 		<div id="blog-sidecolumn">
-		<div class="sidebar-block" id="sidebar_search">
+		<!-- <div class="sidebar-block" id="sidebar_search">
 			<div class="mySearch" id="sidebar_search">
 				<h3 class="catListTitle">搜索</h3>
 				<div id="sidebar_search_box">
@@ -63,23 +63,8 @@
 					<div class="div_my_zzk" id="widget_my_google"><input name="google_q" class="input_my_zzk" id="google_q" onkeydown="return google_go_enter(event)" type="text">&nbsp;<input class="btn_my_zzk" onclick="google_go()" type="button" value="谷歌搜索"></div>
 				</div>
 			</div>
-		</div>
-		<div class="sidebar-block" id="sidebar_shortcut">
-			<div class="catListLink">
-				<h3 class="catListTitle">常用链接</h3>
-				<ul>
-					<li><a title="我的博客的随笔列表" href="http://www.cnblogs.com/skyfsm/p/">我的随笔</a></li>
-					<li><a title="我发表过的评论列表" href="http://www.cnblogs.com/skyfsm/MyComments.html">我的评论</a></li>
-					<li><a title="我评论过的随笔列表" href="http://www.cnblogs.com/skyfsm/OtherPosts.html">我的参与</a></li>
-					<li><a title="我的博客的评论列表" href="http://www.cnblogs.com/skyfsm/RecentComments.html">最新评论</a></li>
-					<li><a title="我的博客的标签列表" href="http://www.cnblogs.com/skyfsm/tag/">我的标签</a></li>
-				</ul>
-				<div id="itemListLin_con" style="display: none;">
-					<ul>
-					</ul>
-				</div>
-			</div>
-		</div>
+		</div> -->
+		
 		<div class="sidebar-block" id="sidebar_toptags"></div>
 		<div id="sidebar_categories">
 			<div class="catListPostCategory sidebar-block" id="sidebar_postcategory">
@@ -96,24 +81,8 @@
 				</ul>
 			</div>
 
-			<div class="catListPostArchive sidebar-block" id="sidebar_postarchive">
-				<h3 class="catListTitle">随笔档案<span style="font-size: 11px; font-weight: normal;">(50)</span></h3>
-				<ul>
-					<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/skyfsm/archive/2017/12.html">2017年12月 (3)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/skyfsm/archive/2017/11.html">2017年11月 (3)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/skyfsm/archive/2017/10.html">2017年10月 (1)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/skyfsm/archive/2017/09.html">2017年9月 (4)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/skyfsm/archive/2017/08.html">2017年8月 (3)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/skyfsm/archive/2017/07.html">2017年7月 (5)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/skyfsm/archive/2017/06.html">2017年6月 (4)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/skyfsm/archive/2017/05.html">2017年5月 (17)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/skyfsm/archive/2017/04.html">2017年4月 (2)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/skyfsm/archive/2017/02.html">2017年2月 (2)</a> </li>
-					<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/skyfsm/archive/2017/01.html">2017年1月 (6)</a> </li>
-				</ul>
-			</div>
 		</div>
-		<div class="sidebar-block" id="sidebar_scorerank">
+		<!-- <div class="sidebar-block" id="sidebar_scorerank">
 			<div class="catListBlogRank">
 			<h3 class="catListTitle">积分与排名</h3>
 			<ul>
@@ -125,7 +94,7 @@
 				</li>
 			</ul>
 			</div>
-		</div>
+		</div> -->
 		<!-- <div class="sidebar-block" id="sidebar_recentcomments">
 			<div id="recent_comments_wrap">
 				<div class="catListComment">

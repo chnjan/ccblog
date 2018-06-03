@@ -26,6 +26,22 @@ function login() {
 				//验证不通过
 				//显示错误信息
 				alert(msg.desc);
+				if(msg.desc == "验证码错误")
+				{
+					//验证码置空
+					$("#vali_passimg").val("");
+					//刷新验证码
+					$("#span_vali").click();
+				}
+				if(msg.desc == "账号或密码错误")
+				{
+					//密码置空
+					$("#passWord").val("");
+					//验证码置空
+					$("#vali_passimg").val("");
+					//刷新验证码
+					$("#span_vali").click();
+				}
 			}
 			//alert(msg.code+":"+msg.desc);
 		}
